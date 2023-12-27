@@ -13,7 +13,6 @@ import org.skylinerobotics.skyscout.settinghandlers.SettingHandler
 
 class SettingsActivity : AppCompatActivity() {
     private lateinit var applyButton: Button
-    private lateinit var darkModeSwitch: SwitchMaterial
     private lateinit var positionEntry: EditText
 
     private lateinit var settingsDatabase: SettingsDatabase
@@ -33,12 +32,10 @@ class SettingsActivity : AppCompatActivity() {
 
     private fun initLayoutElements() {
         applyButton = findViewById(R.id.apply_button)
-        darkModeSwitch = findViewById(R.id.dark_mode_switch)
         positionEntry = findViewById(R.id.position_entry)
     }
 
     private fun initSettingHandlers() {
-        settingHandlers.add(DarkModeSettingHandler(settingsDatabase, darkModeSwitch))
         settingHandlers.add(ScoutingPositionSettingHandler(settingsDatabase, positionEntry))
     }
 

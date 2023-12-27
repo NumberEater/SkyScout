@@ -20,18 +20,18 @@ class SettingsDatabase(private val context: Context) {
         settings = loadSettingsJson()
     }
 
-    public fun changeSetting(key: String, value: String) {
+    fun changeSetting(key: String, value: String) {
         settings.addProperty(key, value)
     }
 
-    public fun loadSetting(key: String): String? {
+    fun loadSetting(key: String): String? {
         if (settings.has(key)) {
             return settings.get(key).asString
         }
         return null
     }
 
-    public fun commit() {
+    fun commit() {
         settingsFile.writeText(Gson().toJson(settings))
     }
 
