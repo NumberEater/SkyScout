@@ -9,7 +9,7 @@ import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.lang.RuntimeException
 
-class SettingsDatabase(private val context: Context) {
+class SettingsDatabase(context: Context) {
     private val settingsFile = File(context.filesDir, "settings.json")
     private val settings: JsonObject
 

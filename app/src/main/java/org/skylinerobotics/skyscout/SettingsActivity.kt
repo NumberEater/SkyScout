@@ -6,12 +6,14 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.google.android.material.switchmaterial.SwitchMaterial
-import org.skylinerobotics.skyscout.settinghandlers.DarkModeSettingHandler
 import org.skylinerobotics.skyscout.settinghandlers.ScoutingPositionSettingHandler
 import org.skylinerobotics.skyscout.settinghandlers.SettingHandler
 
 class SettingsActivity : AppCompatActivity() {
+    companion object {
+        private const val SETTINGS_PIN = 1423
+    }
+
     private lateinit var applyButton: Button
     private lateinit var positionEntry: EditText
 
@@ -22,7 +24,7 @@ class SettingsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
-        settingsDatabase = SettingsDatabase(applicationContext)
+        settingsDatabase = SettingsDatabase(this)
 
         initLayoutElements()
         initSettingHandlers()
@@ -53,8 +55,8 @@ class SettingsActivity : AppCompatActivity() {
         updateSettingsDatabase()
         settingsDatabase.commit()
 
-        Toast.makeText(applicationContext, "Settings Applied", Toast.LENGTH_SHORT).show()
-        startActivity(Intent(applicationContext, MainActivity::class.java))
+        Toast.makeText(this, "Settings Applied", Toast.LENGTH_SHORT).show()
+        startActivity(Intent(this, MainActivity::class.java))
     }
 
     private fun updateSettingsDatabase() {

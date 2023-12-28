@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_auton"
+        android:title="@string/game_scout_auton"
+        android:icon="@drawable/baseline_settings_remote_24"/>
+
+    <item
+        android:id="@+id/navigation_teleop"
+        android:title="@string/game_scout_teleop"
+        android:icon="@drawable/baseline_videogame_asset_24"/>
+
+    <item
+        android:id="@+id/navigation_info"
+        android:title="@string/game_scout_info"
+        android:icon="@drawable/baseline_info_24" />
+
+</menu>

@@ -7,21 +7,31 @@ import android.widget.Button
 
 class MainActivity : AppCompatActivity() {
     private lateinit var settingsButton: Button
+    private lateinit var startButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         initLayoutElements()
-
-        settingsButton.setOnClickListener { settingsButtonAction() }
+        setClickListeners()
     }
 
     private fun initLayoutElements() {
         settingsButton = findViewById(R.id.settings_button)
+        startButton = findViewById(R.id.start_button)
+    }
+
+    private fun setClickListeners() {
+        settingsButton.setOnClickListener { settingsButtonAction() }
+        startButton.setOnClickListener { startButtonAction() }
     }
 
     private fun settingsButtonAction() {
-        startActivity(Intent(applicationContext, SettingsActivity::class.java))
+        startActivity(Intent(this, SettingsActivity::class.java))
+    }
+
+    private fun startButtonAction() {
+        startActivity(Intent(this, GameScoutActivity::class.java))
     }
 }

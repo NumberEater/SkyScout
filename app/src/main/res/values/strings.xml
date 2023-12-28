@@ -9,13 +9,7 @@
     <string name="settings_apply">Apply</string>
     <string name="settings_scouting_position">Scouting Position</string>
 
-
-    <string-array name="teams_array">
-        <item>Blue 1</item>
-        <item>Blue 2</item>
-        <item>Blue 3</item>
-        <item>Red 1</item>
-        <item>Red 2</item>
-        <item>Red 3</item>
-    </string-array>
+    <string name="game_scout_info">Info</string>
+    <string name="game_scout_auton">Auton</string>
+    <string name="game_scout_teleop">Teleop</string>
 </resources>
