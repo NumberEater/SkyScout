@@ -1,4 +1,4 @@
-package org.skylinerobotics.skyscout
+package org.skylinerobotics.skyscout.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,16 +6,16 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import org.skylinerobotics.skyscout.settinghandlers.ScoutingPositionSettingHandler
-import org.skylinerobotics.skyscout.settinghandlers.SettingHandler
+import org.skylinerobotics.skyscout.R
+import org.skylinerobotics.skyscout.data.SettingsDatabase
+import org.skylinerobotics.skyscout.settings.CompetitionSettingHandler
+import org.skylinerobotics.skyscout.settings.ScoutingPositionSettingHandler
+import org.skylinerobotics.skyscout.settings.SettingHandler
 
 class SettingsActivity : AppCompatActivity() {
-    companion object {
-        private const val SETTINGS_PIN = 1423
-    }
-
     private lateinit var applyButton: Button
     private lateinit var positionEntry: EditText
+    private lateinit var competitionEntry: EditText
 
     private lateinit var settingsDatabase: SettingsDatabase
     private var settingHandlers: MutableList<SettingHandler> = mutableListOf()
@@ -35,10 +35,12 @@ class SettingsActivity : AppCompatActivity() {
     private fun initLayoutElements() {
         applyButton = findViewById(R.id.apply_button)
         positionEntry = findViewById(R.id.position_entry)
+        competitionEntry = findViewById(R.id.competition_entry)
     }
 
     private fun initSettingHandlers() {
         settingHandlers.add(ScoutingPositionSettingHandler(settingsDatabase, positionEntry))
+        settingHandlers.add(CompetitionSettingHandler(settingsDatabase, competitionEntry))
     }
 
     private fun updateUI() {

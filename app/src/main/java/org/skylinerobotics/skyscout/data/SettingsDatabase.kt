@@ -1,15 +1,12 @@
-package org.skylinerobotics.skyscout
+package org.skylinerobotics.skyscout.data
 
 import android.content.Context
 import com.google.gson.Gson
-import com.google.gson.JsonElement
 import com.google.gson.JsonObject
 import java.io.File
-import java.io.FileInputStream
-import java.io.FileOutputStream
-import java.lang.RuntimeException
 
 class SettingsDatabase(context: Context) {
+
     private val settingsFile = File(context.filesDir, "settings.json")
     private val settings: JsonObject
 

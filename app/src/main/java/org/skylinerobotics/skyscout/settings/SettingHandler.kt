@@ -1,4 +1,4 @@
-package org.skylinerobotics.skyscout.settinghandlers
+package org.skylinerobotics.skyscout.settings
 
 interface SettingHandler {
     fun applySetting()

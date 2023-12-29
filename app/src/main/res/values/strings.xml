@@ -12,4 +12,6 @@
     <string name="game_scout_info">Info</string>
     <string name="game_scout_auton">Auton</string>
     <string name="game_scout_teleop">Teleop</string>
+    <string name="settings_competition">Competition</string>
+    <string name="main_suggestion">Suggestions</string>
 </resources>

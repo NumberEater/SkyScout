@@ -1,14 +1,11 @@
-package org.skylinerobotics.skyscout
+package org.skylinerobotics.skyscout.ui
 
 import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.InputType
-import android.view.Gravity
-import android.widget.EditText
-import android.widget.LinearLayout
+import android.util.Log
 import androidx.activity.OnBackPressedCallback
-import java.awt.font.TextAttribute
+import org.skylinerobotics.skyscout.R
 
 class GameScoutActivity : AppCompatActivity() {
 
@@ -26,7 +23,12 @@ class GameScoutActivity : AppCompatActivity() {
     }
 
     private fun promptTeamNumber() {
-        TeamNumberDialog()
+        val dialog = TeamNumberDialog(this, ::teamNumberFinishCallback)
+        dialog.show()
+    }
+
+    private fun teamNumberFinishCallback(number: Int) {
+        teamNumber = number
     }
 
     private fun initBackPressedCallback() {

@@ -1,9 +1,10 @@
-package org.skylinerobotics.skyscout
+package org.skylinerobotics.skyscout.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import org.skylinerobotics.skyscout.R
 
 class MainActivity : AppCompatActivity() {
     private lateinit var settingsButton: Button

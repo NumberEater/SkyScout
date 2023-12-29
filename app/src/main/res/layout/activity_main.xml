@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -24,21 +24,34 @@
         android:layout_marginHorizontal="100dp"
         android:layout_marginVertical="25dp"
         android:backgroundTint="@color/button"
-        android:padding="25dp"
+        android:padding="15dp"
         android:text="@string/main_start"
-        android:textSize="30sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@id/settings_button" />
+
+    <Button
+        android:id="@+id/suggestion_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="100dp"
+        android:layout_marginVertical="25dp"
+        android:backgroundTint="@color/button"
+        android:padding="15dp"
+        android:text="@string/main_suggestion"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <Button
         android:id="@+id/settings_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/main_settings"
-        android:textSize="30sp"
-        android:layout_margin="100dp"
-        android:padding="25dp"
+        android:textSize="20sp"
+        android:layout_marginHorizontal="100dp"
+        android:layout_marginVertical="25dp"
+        android:padding="15dp"
         android:backgroundTint="@color/button"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/suggestion_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
