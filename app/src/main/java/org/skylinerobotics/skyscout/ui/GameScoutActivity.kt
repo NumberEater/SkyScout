@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import org.skylinerobotics.skyscout.R
 
@@ -29,6 +30,7 @@ class GameScoutActivity : AppCompatActivity() {
 
     private fun teamNumberFinishCallback(number: Int) {
         teamNumber = number
+        findViewById<TextView>(R.id.team_number_label).text = teamNumber.toString()
     }
 
     private fun initBackPressedCallback() {

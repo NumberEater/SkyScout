@@ -14,4 +14,8 @@
     <string name="game_scout_teleop">Teleop</string>
     <string name="settings_competition">Competition</string>
     <string name="main_suggestion">Suggestions</string>
+    <string name="suggestions_your_name">Your Name</string>
+    <string name="suggestion">Suggestion</string>
+    <string name="suggestions">Suggestions</string>
+    <string name="suggestions_submit">Submit</string>
 </resources>
