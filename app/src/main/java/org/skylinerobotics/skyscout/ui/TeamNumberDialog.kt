@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.EditText
 import org.skylinerobotics.skyscout.R
-import org.skylinerobotics.skyscout.data.SettingsDatabase
+import org.skylinerobotics.skyscout.settings.SettingsDatabase
 
 class TeamNumberDialog(private val context: Context, private val onFinishCallback: (teamNumber: Int) -> Unit) {
     private var teamNumber = 0
@@ -38,10 +38,10 @@ class TeamNumberDialog(private val context: Context, private val onFinishCallbac
     private fun doneButtonAction() {
         if (isNumberValid()) {
             teamNumber = parseTeamNumber()
-            onFinishCallback(teamNumber)
         } else {
-            showErrorMessage()
+            teamNumber = 0
         }
+        onFinishCallback(teamNumber)
     }
 
     private fun isNumberValid(): Boolean {
@@ -60,9 +60,6 @@ class TeamNumberDialog(private val context: Context, private val onFinishCallbac
         return entryValue.toInt()
     }
 
-    private fun showErrorMessage() {
-        teamNumberEntry.error = "Invalid Team Number"
-    }
 
     fun show() {
         dialog.show()

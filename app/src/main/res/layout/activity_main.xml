@@ -30,18 +30,6 @@
         app:layout_constraintBottom_toTopOf="@id/settings_button" />
 
     <Button
-        android:id="@+id/suggestion_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="100dp"
-        android:layout_marginVertical="25dp"
-        android:backgroundTint="@color/button"
-        android:padding="15dp"
-        android:text="@string/main_suggestion"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
-    <Button
         android:id="@+id/settings_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,7 +39,7 @@
         android:layout_marginVertical="25dp"
         android:padding="15dp"
         android:backgroundTint="@color/button"
-        app:layout_constraintBottom_toTopOf="@id/suggestion_button"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 

@@ -1,7 +1,6 @@
 package org.skylinerobotics.skyscout.settings
 
 import android.widget.EditText
-import org.skylinerobotics.skyscout.data.SettingsDatabase
 
 class CompetitionSettingHandler(
     private val settingsDatabase: SettingsDatabase,

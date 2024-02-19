@@ -7,13 +7,14 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import org.skylinerobotics.skyscout.R
-import org.skylinerobotics.skyscout.data.SettingsDatabase
+import org.skylinerobotics.skyscout.settings.SettingsDatabase
 import org.skylinerobotics.skyscout.settings.CompetitionSettingHandler
 import org.skylinerobotics.skyscout.settings.ScoutingPositionSettingHandler
 import org.skylinerobotics.skyscout.settings.SettingHandler
 
 class SettingsActivity : AppCompatActivity() {
     private lateinit var applyButton: Button
+    private lateinit var suggestionsButton: Button
     private lateinit var positionEntry: EditText
     private lateinit var competitionEntry: EditText
 
@@ -36,6 +37,7 @@ class SettingsActivity : AppCompatActivity() {
         applyButton = findViewById(R.id.apply_button)
         positionEntry = findViewById(R.id.position_entry)
         competitionEntry = findViewById(R.id.competition_entry)
+        suggestionsButton = findViewById(R.id.suggestion_button)
     }
 
     private fun initSettingHandlers() {
@@ -51,6 +53,11 @@ class SettingsActivity : AppCompatActivity() {
 
     private fun setClickListeners() {
         applyButton.setOnClickListener { applyButtonAction() }
+        suggestionsButton.setOnClickListener { suggestionsButtonAction() }
+    }
+
+    private fun suggestionsButtonAction() {
+        startActivity(Intent(this, SuggestionsActivity::class.java))
     }
 
     private fun applyButtonAction() {

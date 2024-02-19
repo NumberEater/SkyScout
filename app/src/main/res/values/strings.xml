@@ -1,21 +1,20 @@
 <resources>
     <string name="app_name">Sky Scout</string>
-
-
     <string name="main_start">Start</string>
     <string name="main_settings">Settings</string>
     <string name="dark_mode_settings">Dark Mode</string>
     <string name="settings">Settings</string>
     <string name="settings_apply">Apply</string>
     <string name="settings_scouting_position">Scouting Position</string>
-
     <string name="game_scout_info">Info</string>
     <string name="game_scout_auton">Auton</string>
     <string name="game_scout_teleop">Teleop</string>
     <string name="settings_competition">Competition</string>
     <string name="main_suggestion">Suggestions</string>
     <string name="suggestions_your_name">Your Name</string>
-    <string name="suggestion">Suggestion</string>
-    <string name="suggestions">Suggestions</string>
+    <string name="suggestions">Suggestion</string>
     <string name="suggestions_submit">Submit</string>
+    <string name="auton_fragment_auton">AUTON</string>
+    <string name="teleop_fragment_teleop">TELEOP</string>
+    <string name="info_scout_info">INFO</string>
 </resources>

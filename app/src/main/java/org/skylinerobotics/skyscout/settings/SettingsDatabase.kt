@@ -1,4 +1,4 @@
-package org.skylinerobotics.skyscout.data
+package org.skylinerobotics.skyscout.settings
 
 import android.content.Context
 import com.google.gson.Gson
