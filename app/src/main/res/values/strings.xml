@@ -17,4 +17,10 @@
     <string name="auton_fragment_auton">AUTON</string>
     <string name="teleop_fragment_teleop">TELEOP</string>
     <string name="info_scout_info">INFO</string>
+    <string name="info_fragment_your_name">Your Name</string>
+    <string name="info_fragment_match_number">Match Number</string>
+    <string name="info_fragment_team_number">Team Number</string>
+    <string name="info_fragment_robot_breakdown">Robot Breakdown</string>
+    <string name="info_fragment_notes">Notes</string>
+    <string name="info_fragment_submit">Submit</string>
 </resources>

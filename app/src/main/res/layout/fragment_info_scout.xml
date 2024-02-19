@@ -19,6 +19,93 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
+    <EditText
+        android:id="@+id/scout_name_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textNoSuggestions"
+        android:hint="@string/info_fragment_your_name"
+        android:layout_margin="50dp"
+        android:padding="20dp"
+        android:imeOptions="actionDone"
+        android:maxLines="1"
+
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <EditText
+        android:id="@+id/team_number_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="@string/info_fragment_team_number"
+        android:layout_margin="50dp"
+        android:padding="20dp"
+        android:imeOptions="actionDone"
+        android:maxLines="1"
+
+        app:layout_constraintTop_toBottomOf="@id/scout_name_input"
+        app:layout_constraintStart_toEndOf="@id/match_number_input"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    <EditText
+        android:id="@+id/match_number_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="@string/info_fragment_match_number"
+        android:layout_margin="50dp"
+        android:padding="20dp"
+        android:imeOptions="actionDone"
+        android:maxLines="1"
+
+        app:layout_constraintTop_toBottomOf="@id/scout_name_input"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/team_number_input" />
+
+    <EditText
+        android:id="@+id/notes_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textNoSuggestions"
+        android:hint="@string/info_fragment_notes"
+        android:layout_margin="50dp"
+        android:padding="20dp"
+        android:imeOptions="actionDone"
+        android:maxLines="1"
+
+        app:layout_constraintTop_toBottomOf="@id/match_number_input"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="50dp"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:text="@string/info_fragment_robot_breakdown"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/notes_input"/>
+
+    <Button
+        android:id="@+id/submit_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/info_fragment_submit"
+        android:textSize="20sp"
+        android:layout_marginHorizontal="100dp"
+        android:layout_marginVertical="25dp"
+        android:padding="15dp"
+        android:backgroundTint="@color/button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
