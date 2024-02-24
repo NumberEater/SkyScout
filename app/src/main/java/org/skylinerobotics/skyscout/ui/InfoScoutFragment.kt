@@ -30,6 +30,11 @@ class InfoScoutFragment(private val teamNumber: Int) : GameScoutFragment(teamNum
         return dataHandler.getDataContainer()
     }
 
+    private fun submitButtonAction() {
+        val parentActivity = activity as GameScoutActivity
+        parentActivity.submitScout()
+    }
+
     private fun updateTeamNumber(layout: View) {
         if (teamNumber > 0) {
             dataHandler.setTeamNumber(teamNumber)

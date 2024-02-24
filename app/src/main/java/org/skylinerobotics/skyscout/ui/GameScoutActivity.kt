@@ -7,6 +7,8 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.skylinerobotics.skyscout.R
+import org.skylinerobotics.skyscout.data.database.MatchDatabase
+import org.skylinerobotics.skyscout.data.datacontainer.MatchDataContainer
 
 class GameScoutActivity : AppCompatActivity() {
 
@@ -26,6 +28,14 @@ class GameScoutActivity : AppCompatActivity() {
         initBottomNav()
 
         promptTeamNumber()
+    }
+
+    fun submitScout() {
+        val matchData = constructMatchDataContainer()
+
+        val database = MatchDatabase(this)
+        database.addEntry(matchData)
+        database.close()
     }
 
     private fun initBackPressedCallback() {
@@ -92,5 +102,13 @@ class GameScoutActivity : AppCompatActivity() {
 
         val dialog: AlertDialog = builder.create()
         dialog.show()
+    }
+
+    private fun constructMatchDataContainer(): MatchDataContainer {
+        return MatchDataContainer(
+            autonFragment.getDataContainer(),
+            teleopFragment.getDataContainer(),
+            infoFragment.getDataContainer()
+        )
     }
 }

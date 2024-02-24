@@ -7,7 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import org.skylinerobotics.skyscout.R
-import org.skylinerobotics.skyscout.data.SuggestionsDatabase
+import org.skylinerobotics.skyscout.data.database.SuggestionsDatabase
 
 class SuggestionsActivity : AppCompatActivity() {
     private lateinit var submitButton: Button

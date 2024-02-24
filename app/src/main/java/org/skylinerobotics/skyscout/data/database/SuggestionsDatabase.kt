@@ -1,4 +1,4 @@
-package org.skylinerobotics.skyscout.data
+package org.skylinerobotics.skyscout.data.database
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
