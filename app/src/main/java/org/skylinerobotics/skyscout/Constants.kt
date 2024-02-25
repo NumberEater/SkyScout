@@ -9,4 +9,9 @@ object Constants {
         SPEAKER_NOTE_ATTEMPTED_AMPLIFIED,
         SPEAKER_NOTE_SCORED_AMPLIFIED
     }
+
+    enum class GameScoutFragmentType {
+        AUTON,
+        TELEOP
+    }
 }

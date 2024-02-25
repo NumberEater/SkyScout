@@ -2,5 +2,8 @@
 <resources>
     <color name="button">#698EFF</color>
     <color name="submit_button">#E9E9E9</color>
+    <color name="button_red">#FF6363</color>
+    <color name="button_orange">#FF874F</color>
     <color name="layout_background">#3A3A3A</color>
+    <color name="button_text">#FF000000</color>
 </resources>

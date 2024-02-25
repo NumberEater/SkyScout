@@ -98,10 +98,11 @@
         android:layout_height="wrap_content"
         android:text="@string/info_fragment_submit"
         android:textSize="20sp"
+        android:textColor="@color/button_text"
         android:layout_marginHorizontal="100dp"
         android:layout_marginVertical="25dp"
         android:padding="15dp"
-        android:backgroundTint="@color/button"
+        android:backgroundTint="@color/submit_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>

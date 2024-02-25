@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import org.skylinerobotics.skyscout.R
@@ -22,6 +23,8 @@ class InfoScoutFragment(private val teamNumber: Int) : GameScoutFragment(teamNum
         val layout = inflater.inflate(R.layout.fragment_info_scout, container, false)
 
         updateTeamNumber(layout)
+
+        layout.findViewById<Button>(R.id.submit_button).setOnClickListener { submitButtonAction() }
 
         return layout
     }

@@ -99,6 +99,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/settings_apply"
+        android:textColor="@color/button_text"
         android:textSize="20sp"
         android:layout_marginHorizontal="100dp"
         android:layout_marginVertical="25dp"

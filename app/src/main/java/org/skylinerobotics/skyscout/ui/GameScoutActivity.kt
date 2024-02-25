@@ -32,10 +32,26 @@ class GameScoutActivity : AppCompatActivity() {
 
     fun submitScout() {
         val matchData = constructMatchDataContainer()
+        val shotsDataHandler = teleopFragment.getShotDataHandler()
+        shotsDataHandler.setShotsMatchNumber(matchData.infoData.matchNumber)
+        shotsDataHandler.setShotsTeamNumber(matchData.infoData.teamNumber)
 
         val database = MatchDatabase(this)
-        database.addEntry(matchData)
+        database.addMatchEntry(matchData)
+        database.addShotEntries(shotsDataHandler.getDataContainer())
         database.close()
+    }
+
+    fun getAutonFragment(): AutonScoutFragment {
+        return autonFragment
+    }
+
+    fun getTeleopFragment(): TeleopScoutFragment {
+        return teleopFragment
+    }
+
+    fun getInfoFragment(): InfoScoutFragment {
+        return infoFragment
     }
 
     private fun initBackPressedCallback() {
