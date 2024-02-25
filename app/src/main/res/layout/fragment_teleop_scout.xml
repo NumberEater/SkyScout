@@ -32,19 +32,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-<!--    <ImageView-->
-<!--        android:id="@+id/field_map"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_margin="20dp"-->
-<!--        android:src="@drawable/skyline_robotics_logo"-->
-<!--        android:background="@color/black"-->
-
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/team_number_label" />-->
-
     <Button
         android:id="@+id/speaker_shot_button"
         android:layout_width="match_parent"
@@ -77,7 +64,6 @@
         android:textColor="@color/button_text"
         android:textSize="20sp"
 
-        app:layout_constraintBottom_toTopOf="@id/undo_button"
         app:layout_constraintEnd_toStartOf="@id/amp_shot_failed_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/speaker_shot_button"
@@ -101,29 +87,124 @@
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/amp_shot_scored_button"
-        app:layout_constraintBottom_toTopOf="@id/undo_button"
         app:layout_constraintTop_toBottomOf="@id/speaker_shot_button"
 
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintHorizontal_weight="0.5"/>
 
     <Button
-        android:id="@+id/undo_button"
-        android:layout_width="wrap_content"
+        android:id="@+id/trap_scored_button"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
 
+        android:layout_marginStart="75dp"
+        android:layout_marginEnd="25dp"
         android:layout_marginVertical="40dp"
-        android:backgroundTint="@color/button_red"
+        android:backgroundTint="@color/button_green"
+        android:padding="15dp"
+        android:text="@string/teleop_fragment_trap_scored"
         android:textColor="@color/button_text"
-        android:paddingHorizontal="40dp"
-        android:paddingVertical="20dp"
-        android:text="@string/teleop_fragment_undo"
+        android:textSize="20sp"
 
+        app:layout_constraintEnd_toStartOf="@id/trap_failed_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/amp_shot_scored_button"
+
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintHorizontal_weight="0.5"/>
+
+    <Button
+        android:id="@+id/trap_failed_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginEnd="75dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginVertical="40dp"
+        android:backgroundTint="@color/button_orange"
+        android:textColor="@color/button_text"
+        android:padding="15dp"
+        android:text="@string/teleop_fragment_trap_failed"
         android:textSize="20sp"
 
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/trap_scored_button"
+        app:layout_constraintTop_toBottomOf="@id/amp_shot_scored_button"
+
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintHorizontal_weight="0.5"/>
+
+    <CheckBox
+        android:id="@+id/parked_checkbox"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="50dp"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:text="@string/teleop_fragment_parked"
+
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/amp_shot_scored_button"/>
+        app:layout_constraintEnd_toStartOf="@id/onstage_checkbox"
+        app:layout_constraintTop_toBottomOf="@id/trap_scored_button"/>
+
+    <CheckBox
+        android:id="@+id/onstage_checkbox"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="50dp"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:text="@string/teleop_fragment_onstage"
+
+        app:layout_constraintStart_toEndOf="@id/parked_checkbox"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/trap_scored_button"/>
+
+    <CheckBox
+        android:id="@+id/spotlight_checkbox"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="50dp"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:text="@string/teleop_fragment_spotlight"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/harmony_checkbox"
+        app:layout_constraintTop_toBottomOf="@id/parked_checkbox"/>
+
+    <CheckBox
+        android:id="@+id/harmony_checkbox"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="50dp"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:text="@string/teleop_fragment_harmony"
+
+        app:layout_constraintStart_toEndOf="@id/spotlight_checkbox"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/parked_checkbox"/>
+
+
+
+<!--    <Button-->
+<!--        android:id="@+id/undo_button"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+
+<!--        android:layout_marginVertical="40dp"-->
+<!--        android:backgroundTint="@color/button_red"-->
+<!--        android:textColor="@color/button_text"-->
+<!--        android:paddingHorizontal="40dp"-->
+<!--        android:paddingVertical="20dp"-->
+<!--        android:text="@string/teleop_fragment_undo"-->
+
+<!--        android:textSize="20sp"-->
+
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/amp_shot_scored_button"/>-->
 
 
 

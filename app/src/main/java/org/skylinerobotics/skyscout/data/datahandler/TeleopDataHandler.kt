@@ -62,8 +62,15 @@ class TeleopDataHandler : DataHandler() {
         }
     }
 
+    fun incrementTrapNoteScored() {
+        dataContainer.trapNotesAttempted++
+        dataContainer.trapNotesScored++
+    }
 
-    // Could be cleaned up
+    fun incrementTrapNoteFailed() {
+        dataContainer.trapNotesAttempted++
+    }
+
     fun undoLastNote() {
         when (noteActions.pop()) {
             Constants.NoteActions.AMP_NOTE_ATTEMPTED -> {

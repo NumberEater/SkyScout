@@ -26,6 +26,9 @@ class TeamNumberDialog(private val context: Context, private val onFinishCallbac
         builder.setPositiveButton("Done") { _, _, ->
             doneButtonAction()
         }
+        builder.setOnCancelListener { _ ->
+            onFinishCallback(0)
+        }
 
         dialog = builder.create()
     }

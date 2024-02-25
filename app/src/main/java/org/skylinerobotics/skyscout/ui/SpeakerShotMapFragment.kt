@@ -19,6 +19,7 @@ import androidx.core.graphics.drawable.toBitmap
 import org.skylinerobotics.skyscout.R
 import org.skylinerobotics.skyscout.data.datahandler.SpeakerShotDataHandler
 import org.skylinerobotics.skyscout.data.datahandler.TeleopDataHandler
+import org.skylinerobotics.skyscout.settings.SettingsDatabase
 
 class SpeakerShotMapFragment(
     private val callingFragment: GameScoutFragment,
@@ -33,6 +34,8 @@ class SpeakerShotMapFragment(
 
     private var currentShotX = 0f
     private var currentShotY = 0f
+
+    private var fieldOrientation = 0
 
     private var isFieldBitmapInitialized = false
 
@@ -49,6 +52,13 @@ class SpeakerShotMapFragment(
         setButtonActions(layout)
 
         fieldMapImageView = layout.findViewById(R.id.field_map)
+        val settings = SettingsDatabase(requireContext())
+        val position = settings.loadSetting("scouting-position")
+        if (position?.startsWith("RED") == true) {
+            fieldMapImageView.setImageResource(R.drawable.field_orientation_2)
+            fieldOrientation = 1
+        }
+
         fieldMapImageView.setOnTouchListener(::mapTouchAction)
 
         return layout
@@ -107,7 +117,12 @@ class SpeakerShotMapFragment(
             if (!(x > fieldMapWidth || y > fieldMapHeight || x < 0 || y < 0)) {
                 drawTouchPoint(x, y)
 
-                currentShotX = x / fieldMapWidth
+                if (fieldOrientation == 1) {
+                    currentShotX = 1.0f - (x / fieldMapWidth)
+                } else {
+                    currentShotX = x / fieldMapWidth
+                }
+
                 currentShotY = 1.0f - (y / fieldMapHeight)
                 Log.i("SpeakerShotMapFragment", String.format("Shot at (%.2f, %.2f)", x / fieldMapWidth, y / fieldMapHeight))
 

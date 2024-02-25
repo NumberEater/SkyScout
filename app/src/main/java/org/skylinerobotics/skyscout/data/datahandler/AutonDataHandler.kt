@@ -9,22 +9,22 @@ class AutonDataHandler : DataHandler() {
         autonDataContainer.leftWing = leftWing
     }
 
-    fun ampNoteScored() {
+    fun incrementAmpNoteScored() {
         autonDataContainer.ampNotesAttempted++
         autonDataContainer.ampNotesScored++
     }
 
-    fun speakerNoteScored() {
+    fun incrementSpeakerNoteScored() {
         autonDataContainer.speakerNotesAttempted++
         autonDataContainer.speakerNotesScored++
     }
 
-    fun ampNoteFailed() {
+    fun incrementAmpNoteFailed() {
         autonDataContainer.ampNotesAttempted++
     }
 
-    fun speakerNoteFailed() {
-        autonDataContainer.ampNotesAttempted++
+    fun incrementSpeakerNoteFailed() {
+        autonDataContainer.speakerNotesAttempted++
     }
 
     override fun getDataContainer(): AutonDataContainer {
