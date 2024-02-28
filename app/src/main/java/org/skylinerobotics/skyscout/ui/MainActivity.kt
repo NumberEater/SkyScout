@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import org.skylinerobotics.skyscout.Constants
 import org.skylinerobotics.skyscout.R
 
 class MainActivity : AppCompatActivity() {
@@ -33,6 +34,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startButtonAction() {
-        startActivity(Intent(this, GameScoutActivity::class.java))
+        val scoutTypeSelectionDialog = ScoutTypeSelectionDialog(this, ::scoutTypeSelectionCallback)
+        scoutTypeSelectionDialog.show()
+    }
+
+    private fun scoutTypeSelectionCallback(scoutType: Constants.ScoutType) {
+        when (scoutType) {
+            Constants.ScoutType.MATCH -> {
+                startActivity(Intent(this, GameScoutActivity::class.java))
+            }
+            Constants.ScoutType.PIT -> {
+                startActivity(Intent(this, PitScoutActivity::class.java))
+            }
+        }
     }
 }

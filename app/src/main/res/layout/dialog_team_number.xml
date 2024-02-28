@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
     <EditText
-        android:id="@+id/team_number_entry"
+        android:id="@+id/team_number_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"

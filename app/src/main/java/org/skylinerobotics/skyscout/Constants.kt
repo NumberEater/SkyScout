@@ -10,8 +10,8 @@ object Constants {
         SPEAKER_NOTE_SCORED_AMPLIFIED
     }
 
-    enum class GameScoutFragmentType {
-        AUTON,
-        TELEOP
+    enum class ScoutType {
+        MATCH,
+        PIT
     }
 }

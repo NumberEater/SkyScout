@@ -9,7 +9,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.skylinerobotics.skyscout.R
-import org.skylinerobotics.skyscout.data.database.MatchDatabase
+import org.skylinerobotics.skyscout.data.database.ScoutDatabase
 import org.skylinerobotics.skyscout.data.datacontainer.MatchDataContainer
 
 class GameScoutActivity : AppCompatActivity() {
@@ -38,7 +38,7 @@ class GameScoutActivity : AppCompatActivity() {
         shotsDataHandler.setShotsMatchNumber(matchData.infoData.matchNumber)
         shotsDataHandler.setShotsTeamNumber(matchData.infoData.teamNumber)
 
-        val database = MatchDatabase(this)
+        val database = ScoutDatabase(this)
         database.addMatchEntry(matchData)
         database.addShotEntries(shotsDataHandler.getDataContainer())
         database.close()

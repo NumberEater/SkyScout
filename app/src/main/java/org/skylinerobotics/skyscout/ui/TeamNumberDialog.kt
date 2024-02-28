@@ -20,7 +20,7 @@ class TeamNumberDialog(private val context: Context, private val onFinishCallbac
         builder.setMessage(getScoutingPosition())
 
         val layout = inflateDialogLayoutView()
-        teamNumberEntry = layout.findViewById(R.id.team_number_entry)
+        teamNumberEntry = layout.findViewById(R.id.team_number_input)
         builder.setView(layout)
 
         builder.setPositiveButton("Done") { _, _, ->

@@ -4,9 +4,10 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import org.skylinerobotics.skyscout.data.datacontainer.MatchDataContainer
 import org.skylinerobotics.skyscout.data.datacontainer.MatchSpeakerShotsDataContainer
+import org.skylinerobotics.skyscout.data.datacontainer.PitDataContainer
 import org.skylinerobotics.skyscout.data.datacontainer.SpeakerShotDataContainer
 
-class MatchDatabase(context: Context) {
+class ScoutDatabase(context: Context) {
     private val database: SQLiteDatabase
 
     companion object {
@@ -74,9 +75,28 @@ class MatchDatabase(context: Context) {
             INSERT INTO SpeakerShots VALUES(
                 %d,
                 %d,
-                %.2f,
-                %.2f,
+                %f,
+                %f,
                 %d)
+        """
+
+        private const val CREATE_PIT_TABLE = """
+            CREATE TABLE IF NOT EXISTS PitData(
+                TeamNumber INTEGER,
+                Length INTEGER,
+                Width INTEGER,
+                Height INTEGER,
+                Amp BOOLEAN,
+                Speaker BOOLEAN,
+                Trap BOOLEAN,
+                GroundIntake BOOLEAN,
+                SourceIntake BOOLEAN,
+                ShooterType VARCHAR,
+                DrivetrainType VARCHAR,
+                Climb BOOLEAN,
+                Offense BOOLEAN,
+                Defense BOOLEAN
+            )
         """
     }
 
@@ -85,10 +105,16 @@ class MatchDatabase(context: Context) {
 
         database.execSQL(CREATE_MAIN_TABLE)
         database.execSQL(CREATE_SHOTS_TABLE)
+        database.execSQL(CREATE_PIT_TABLE)
     }
 
     fun addMatchEntry(matchData: MatchDataContainer) {
         val insertCommand = generateInsertMatchCommand(matchData)
+        database.execSQL(insertCommand)
+    }
+
+    fun addPitEntry(pitData: PitDataContainer) {
+        val insertCommand = generateInsertPitCommand(pitData)
         database.execSQL(insertCommand)
     }
 
@@ -127,6 +153,10 @@ class MatchDatabase(context: Context) {
             if (matchData.teleopData.harmony) 1 else 0,
             if (matchData.infoData.breakdown) 1 else 0,
             matchData.infoData.notes)
+    }
+
+    private fun generateInsertPitCommand(pitData: PitDataContainer): String {
+        return ""
     }
 
     private fun generateInsertShotCommand(shotData: SpeakerShotDataContainer): String {
