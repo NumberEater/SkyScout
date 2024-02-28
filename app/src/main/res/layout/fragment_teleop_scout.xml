@@ -33,22 +33,46 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <Button
-        android:id="@+id/speaker_shot_button"
-        android:layout_width="match_parent"
+        android:id="@+id/speaker_shot_scored_button"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
 
-        android:layout_marginHorizontal="75dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginEnd="25dp"
         android:layout_marginBottom="25dp"
         android:layout_marginTop="50dp"
-        android:backgroundTint="@color/button"
+        android:backgroundTint="@color/button_green"
         android:textColor="@color/button_text"
         android:padding="15dp"
-        android:text="@string/teleop_fragment_speaker_shot"
+        android:text="@string/teleop_fragment_speaker_shot_scored"
         android:textSize="20sp"
 
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/team_number_label"/>
+        app:layout_constraintEnd_toStartOf="@id/speaker_shot_failed_button"
+        app:layout_constraintTop_toBottomOf="@id/team_number_label"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintHorizontal_weight="0.5"/>
+
+    <Button
+        android:id="@+id/speaker_shot_failed_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginEnd="75dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="25dp"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="@color/button_orange"
+        android:textColor="@color/button_text"
+        android:padding="15dp"
+        android:text="@string/teleop_fragment_speaker_shot_failed"
+        android:textSize="20sp"
+
+        app:layout_constraintStart_toEndOf="@id/speaker_shot_scored_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/team_number_label"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintHorizontal_weight="0.5"/>
 
     <Button
         android:id="@+id/amp_shot_scored_button"
@@ -66,7 +90,7 @@
 
         app:layout_constraintEnd_toStartOf="@id/amp_shot_failed_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/speaker_shot_button"
+        app:layout_constraintTop_toBottomOf="@id/speaker_shot_scored_button"
 
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintHorizontal_weight="0.5"/>
@@ -87,7 +111,7 @@
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/amp_shot_scored_button"
-        app:layout_constraintTop_toBottomOf="@id/speaker_shot_button"
+        app:layout_constraintTop_toBottomOf="@id/speaker_shot_scored_button"
 
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintHorizontal_weight="0.5"/>

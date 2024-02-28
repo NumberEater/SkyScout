@@ -18,7 +18,8 @@ class TeleopScoutFragment(private val teamNumber: Int) : GameScoutFragment(teamN
     private val shotsDataHandler = SpeakerShotDataHandler()
     private lateinit var layout: View
 
-    private lateinit var speakerShotButton: Button
+    private lateinit var speakerScoredButton: Button
+    private lateinit var speakerFailedButton: Button
     private lateinit var ampShotScoredButton: Button
     private lateinit var ampShotFailedButton: Button
     private lateinit var trapScoredButton: Button
@@ -54,7 +55,8 @@ class TeleopScoutFragment(private val teamNumber: Int) : GameScoutFragment(teamN
     }
 
     private fun initializeButtons() {
-        speakerShotButton = layout.findViewById(R.id.speaker_shot_button)
+        speakerScoredButton = layout.findViewById(R.id.speaker_shot_scored_button)
+        speakerFailedButton = layout.findViewById(R.id.speaker_shot_failed_button)
         ampShotScoredButton = layout.findViewById(R.id.amp_shot_scored_button)
         ampShotFailedButton = layout.findViewById(R.id.amp_shot_failed_button)
         trapScoredButton = layout.findViewById(R.id.trap_scored_button)
@@ -67,6 +69,16 @@ class TeleopScoutFragment(private val teamNumber: Int) : GameScoutFragment(teamN
     }
 
     private fun updateButtonText() {
+        speakerScoredButton.text = getString(
+            R.string.teleop_fragment_speaker_shot_scored,
+            dataHandler.getDataContainer().speakerNotesScored + dataHandler.getDataContainer().speakerNotesScoredAmped
+        )
+        speakerFailedButton.text = getString(
+            R.string.teleop_fragment_speaker_shot_failed,
+            (dataHandler.getDataContainer().speakerNotesAttempted - dataHandler.getDataContainer().speakerNotesScored) +
+                    (dataHandler.getDataContainer().speakerNotesAttemptedAmped - dataHandler.getDataContainer().speakerNotesScoredAmped)
+        )
+
         ampShotScoredButton.text = getString(
             R.string.teleop_fragment_amp_shot_scored,
             dataHandler.getDataContainer().ampNotesScored
@@ -89,7 +101,8 @@ class TeleopScoutFragment(private val teamNumber: Int) : GameScoutFragment(teamN
     }
 
     private fun setButtonActions() {
-        speakerShotButton.setOnClickListener { speakerShotButtonAction() }
+        speakerScoredButton.setOnClickListener { speakerScoredButtonAction() }
+        speakerFailedButton.setOnClickListener { speakerFailedButtonAction() }
         ampShotScoredButton.setOnClickListener { ampShotScoredButtonAction() }
         ampShotFailedButton.setOnClickListener { ampShotFailedButtonAction() }
         trapScoredButton.setOnClickListener { trapScoredButtonAction() }
@@ -101,8 +114,12 @@ class TeleopScoutFragment(private val teamNumber: Int) : GameScoutFragment(teamN
         harmonyCheckbox.setOnClickListener { dataHandler.setHarmony(harmonyCheckbox.isChecked) }
     }
 
-    private fun speakerShotButtonAction() {
-        loadParentFragment(SpeakerShotMapFragment(this, shotsDataHandler, dataHandler))
+    private fun speakerScoredButtonAction() {
+        loadParentFragment(SpeakerShotMapFragment(this, shotsDataHandler, dataHandler, true))
+    }
+
+    private fun speakerFailedButtonAction() {
+        loadParentFragment(SpeakerShotMapFragment(this, shotsDataHandler, dataHandler, false))
     }
 
     private fun ampShotScoredButtonAction() {

@@ -24,7 +24,8 @@ import org.skylinerobotics.skyscout.settings.SettingsDatabase
 class SpeakerShotMapFragment(
     private val callingFragment: GameScoutFragment,
     private val shotDataHandler: SpeakerShotDataHandler,
-    private val teleopDataHandler: TeleopDataHandler) : Fragment() {
+    private val teleopDataHandler: TeleopDataHandler,
+    private val scored: Boolean) : Fragment() {
 
     private lateinit var fieldMapImageView: ImageView
     private lateinit var fieldMapBitmap: Bitmap
@@ -65,22 +66,18 @@ class SpeakerShotMapFragment(
     }
 
     private fun setButtonActions(layout: View) {
-        layout.findViewById<Button>(R.id.scored_button).setOnClickListener { scoredButtonAction() }
-        layout.findViewById<Button>(R.id.missed_button).setOnClickListener { missedButtonAction() }
+        layout.findViewById<Button>(R.id.submit_shot_button).setOnClickListener { submitButtonAction() }
         layout.findViewById<Button>(R.id.cancel_button).setOnClickListener { cancelButtonAction() }
     }
 
-    private fun scoredButtonAction() {
-        shotDataHandler.addShot(currentShotX, currentShotY, true)
-        teleopDataHandler.incrementSpeakerNoteScored(ampedCheckbox.isChecked)
-        Toast.makeText(context, "Scored Shot Recorded", Toast.LENGTH_SHORT).show()
-        loadCallingFragment()
-    }
+    private fun submitButtonAction() {
+        shotDataHandler.addShot(currentShotX, currentShotY, scored)
+        if (scored)
+            teleopDataHandler.incrementSpeakerNoteScored(ampedCheckbox.isChecked)
+        else
+            teleopDataHandler.incrementSpeakerNoteFailed(ampedCheckbox.isChecked)
 
-    private fun missedButtonAction() {
-        shotDataHandler.addShot(currentShotX, currentShotY, false)
-        teleopDataHandler.incrementSpeakerNoteFailed(ampedCheckbox.isChecked)
-        Toast.makeText(context, "Missed Shot Recorded", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, (if (scored) "Scored" else "Missed") + " Shot Recorded", Toast.LENGTH_SHORT).show()
         loadCallingFragment()
     }
 

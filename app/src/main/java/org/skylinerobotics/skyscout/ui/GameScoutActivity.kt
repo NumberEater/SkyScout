@@ -1,8 +1,10 @@
 package org.skylinerobotics.skyscout.ui
 
 import android.app.AlertDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -40,6 +42,9 @@ class GameScoutActivity : AppCompatActivity() {
         database.addMatchEntry(matchData)
         database.addShotEntries(shotsDataHandler.getDataContainer())
         database.close()
+
+        Toast.makeText(this, "Scout Stored", Toast.LENGTH_SHORT).show()
+        startActivity(Intent(this, MainActivity::class.java))
     }
 
     fun getAutonFragment(): AutonScoutFragment {
