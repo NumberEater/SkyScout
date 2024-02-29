@@ -2,6 +2,7 @@ package org.skylinerobotics.skyscout.data.database
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
+import android.util.Log
 import org.skylinerobotics.skyscout.data.datacontainer.MatchDataContainer
 import org.skylinerobotics.skyscout.data.datacontainer.MatchSpeakerShotsDataContainer
 import org.skylinerobotics.skyscout.data.datacontainer.PitDataContainer
@@ -98,6 +99,25 @@ class ScoutDatabase(context: Context) {
                 Defense BOOLEAN
             )
         """
+
+        private const val ADD_PIT_ENTRY_FORMAT = """
+            INSERT INTO PitData VALUES(
+                %d,
+                %d,
+                %d,
+                %d,
+                %d,
+                %d,
+                %d,
+                %d,
+                %d,
+                "%s",
+                "%s",
+                %d,
+                %d,
+                %d
+            )
+        """
     }
 
     init {
@@ -156,7 +176,22 @@ class ScoutDatabase(context: Context) {
     }
 
     private fun generateInsertPitCommand(pitData: PitDataContainer): String {
-        return ""
+        return String.format(ADD_PIT_ENTRY_FORMAT,
+            pitData.teamNumber,
+            pitData.length,
+            pitData.width,
+            pitData.height,
+            if (pitData.canDoAmp) 1 else 0,
+            if (pitData.canDoSpeaker) 1 else 0,
+            if (pitData.canDoTrap) 1 else 0,
+            if (pitData.canGroundIntake) 1 else 0,
+            if (pitData.canSourceIntake) 1 else 0,
+            pitData.shooterType,
+            pitData.drivetrainType,
+            if (pitData.canClimb) 1 else 0,
+            if (pitData.canOffense) 1 else 0,
+            if (pitData.canDefense) 1 else 0
+        )
     }
 
     private fun generateInsertShotCommand(shotData: SpeakerShotDataContainer): String {

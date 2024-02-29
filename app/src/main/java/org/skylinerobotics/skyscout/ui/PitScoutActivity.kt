@@ -2,10 +2,12 @@ package org.skylinerobotics.skyscout.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.RadioGroup
 import org.skylinerobotics.skyscout.R
+import org.skylinerobotics.skyscout.data.database.ScoutDatabase
 import org.skylinerobotics.skyscout.data.datacontainer.PitDataContainer
 
 class PitScoutActivity : AppCompatActivity() {
@@ -28,11 +30,37 @@ class PitScoutActivity : AppCompatActivity() {
     private lateinit var offenseCheckbox: CheckBox
     private lateinit var defenseCheckbox: CheckBox
 
+    private lateinit var submitButton: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pit_scout)
 
         initLayoutElements()
+    }
+
+    private fun initLayoutElements() {
+        teamNumberInput = findViewById(R.id.team_number_input)
+        lengthInput = findViewById(R.id.length_input)
+        widthInput = findViewById(R.id.width_input)
+        heightInput = findViewById(R.id.height_input)
+
+        ampScoreCheckbox = findViewById(R.id.amp_checkbox)
+        speakerScoreCheckbox = findViewById(R.id.speaker_checkbox)
+        trapScoreCheckbox = findViewById(R.id.trap_checkbox)
+
+        intakeGroundCheckbox = findViewById(R.id.ground_intake_checkbox)
+        intakeSourceCheckbox = findViewById(R.id.source_intake_checkbox)
+
+        shooterRadioGroup = findViewById(R.id.shooter_type_radio_group)
+        drivetrainRadioGroup = findViewById(R.id.drivetrain_type_radio_group)
+
+        climbCheckbox = findViewById(R.id.climb_checkbox)
+        offenseCheckbox = findViewById(R.id.offense_checkbox)
+        defenseCheckbox = findViewById(R.id.defense_checkbox)
+
+        submitButton = findViewById(R.id.submit_button)
+        submitButton.setOnClickListener { submitButtonAction() }
     }
 
     private fun constructDataContainer(): PitDataContainer {
@@ -80,24 +108,9 @@ class PitScoutActivity : AppCompatActivity() {
         )
     }
 
-    private fun initLayoutElements() {
-        teamNumberInput = findViewById(R.id.team_number_input)
-        lengthInput = findViewById(R.id.length_input)
-        widthInput = findViewById(R.id.width_input)
-        heightInput = findViewById(R.id.height_input)
-
-        ampScoreCheckbox = findViewById(R.id.amp_checkbox)
-        speakerScoreCheckbox = findViewById(R.id.speaker_checkbox)
-        trapScoreCheckbox = findViewById(R.id.trap_checkbox)
-
-        intakeGroundCheckbox = findViewById(R.id.ground_intake_checkbox)
-        intakeSourceCheckbox = findViewById(R.id.source_intake_checkbox)
-
-        shooterRadioGroup = findViewById(R.id.shooter_type_radio_group)
-        drivetrainRadioGroup = findViewById(R.id.drivetrain_type_radio_group)
-
-        climbCheckbox = findViewById(R.id.climb_checkbox)
-        offenseCheckbox = findViewById(R.id.offense_checkbox)
-        defenseCheckbox = findViewById(R.id.defense_checkbox)
+    private fun submitButtonAction() {
+        val database = ScoutDatabase(this)
+        database.addPitEntry(constructDataContainer())
+        database.close()
     }
 }
