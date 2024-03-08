@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import org.skylinerobotics.skyscout.Constants
 import org.skylinerobotics.skyscout.R
 import org.skylinerobotics.skyscout.data.datacontainer.TeleopDataContainer
 import org.skylinerobotics.skyscout.data.datahandler.SpeakerShotDataHandler
@@ -28,6 +29,7 @@ class TeleopScoutFragment(private val teamNumber: Int) : GameScoutFragment(teamN
     private lateinit var onstageCheckbox: CheckBox
     private lateinit var spotlightCheckbox: CheckBox
     private lateinit var harmonyCheckbox: CheckBox
+    private lateinit var undoButton: Button
 
 
     override fun onCreateView(
@@ -61,6 +63,7 @@ class TeleopScoutFragment(private val teamNumber: Int) : GameScoutFragment(teamN
         ampShotFailedButton = layout.findViewById(R.id.amp_shot_failed_button)
         trapScoredButton = layout.findViewById(R.id.trap_scored_button)
         trapFailedButton = layout.findViewById(R.id.trap_failed_button)
+        undoButton = layout.findViewById(R.id.undo_button)
 
         parkedCheckbox = layout.findViewById(R.id.parked_checkbox)
         onstageCheckbox = layout.findViewById(R.id.onstage_checkbox)
@@ -107,6 +110,7 @@ class TeleopScoutFragment(private val teamNumber: Int) : GameScoutFragment(teamN
         ampShotFailedButton.setOnClickListener { ampShotFailedButtonAction() }
         trapScoredButton.setOnClickListener { trapScoredButtonAction() }
         trapFailedButton.setOnClickListener { trapFailedButtonAction() }
+        undoButton.setOnClickListener { undoButtonAction() }
 
         parkedCheckbox.setOnClickListener { dataHandler.setParked(parkedCheckbox.isChecked) }
         onstageCheckbox.setOnClickListener { dataHandler.setOnstage(onstageCheckbox.isChecked) }
@@ -152,6 +156,18 @@ class TeleopScoutFragment(private val teamNumber: Int) : GameScoutFragment(teamN
             R.string.teleop_fragment_trap_failed,
             dataHandler.getDataContainer().trapNotesAttempted - dataHandler.getDataContainer().trapNotesScored
         )
+    }
+
+    private fun undoButtonAction() {
+        val lastNoteAction = dataHandler.getLastNoteAction()
+        if (lastNoteAction == Constants.NoteActions.SPEAKER_NOTE_ATTEMPTED
+            || lastNoteAction == Constants.NoteActions.SPEAKER_NOTE_SCORED
+            || lastNoteAction == Constants.NoteActions.SPEAKER_NOTE_ATTEMPTED_AMPLIFIED
+            || lastNoteAction == Constants.NoteActions.SPEAKER_NOTE_SCORED_AMPLIFIED) {
+            shotsDataHandler.undoLastShot()
+        }
+        dataHandler.undoLastNote()
+        updateButtonText()
     }
 
     private fun loadParentFragment(fragment: Fragment){

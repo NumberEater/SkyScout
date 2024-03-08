@@ -25,6 +25,12 @@ class SpeakerShotDataHandler : DataHandler() {
         }
     }
 
+    fun undoLastShot() {
+        if (matchSpeakerShots.speakerShots.size > 0) {
+            matchSpeakerShots.speakerShots.removeLast()
+        }
+    }
+
     override fun getDataContainer(): MatchSpeakerShotsDataContainer {
         return matchSpeakerShots
     }

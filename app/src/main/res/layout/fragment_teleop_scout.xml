@@ -162,7 +162,8 @@
         android:id="@+id/parked_checkbox"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_margin="50dp"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginVertical="25dp"
         android:scaleX="1.5"
         android:scaleY="1.5"
         android:text="@string/teleop_fragment_parked"
@@ -175,7 +176,8 @@
         android:id="@+id/onstage_checkbox"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_margin="50dp"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginVertical="25dp"
         android:scaleX="1.5"
         android:scaleY="1.5"
         android:text="@string/teleop_fragment_onstage"
@@ -188,7 +190,8 @@
         android:id="@+id/spotlight_checkbox"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_margin="50dp"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginVertical="25dp"
         android:scaleX="1.5"
         android:scaleY="1.5"
         android:text="@string/teleop_fragment_spotlight"
@@ -201,7 +204,8 @@
         android:id="@+id/harmony_checkbox"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_margin="50dp"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginVertical="25dp"
         android:scaleX="1.5"
         android:scaleY="1.5"
         android:text="@string/teleop_fragment_harmony"
@@ -212,23 +216,23 @@
 
 
 
-<!--    <Button-->
-<!--        android:id="@+id/undo_button"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
+    <Button
+        android:id="@+id/undo_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
 
-<!--        android:layout_marginVertical="40dp"-->
-<!--        android:backgroundTint="@color/button_red"-->
-<!--        android:textColor="@color/button_text"-->
-<!--        android:paddingHorizontal="40dp"-->
-<!--        android:paddingVertical="20dp"-->
-<!--        android:text="@string/teleop_fragment_undo"-->
+        android:layout_marginVertical="40dp"
+        android:backgroundTint="@color/button_red"
+        android:textColor="@color/button_text"
+        android:paddingHorizontal="40dp"
+        android:paddingVertical="20dp"
+        android:text="@string/teleop_fragment_undo"
 
-<!--        android:textSize="20sp"-->
+        android:textSize="20sp"
 
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/amp_shot_scored_button"/>-->
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 
 

@@ -65,43 +65,59 @@ class TeleopDataHandler : DataHandler() {
     fun incrementTrapNoteScored() {
         dataContainer.trapNotesAttempted++
         dataContainer.trapNotesScored++
+        addNoteAction(Constants.NoteActions.TRAP_NOTE_SCORED)
     }
 
     fun incrementTrapNoteFailed() {
         dataContainer.trapNotesAttempted++
+        addNoteAction(Constants.NoteActions.TRAP_NOTE_ATTEMPTED)
     }
 
     fun undoLastNote() {
-        when (noteActions.pop()) {
-            Constants.NoteActions.AMP_NOTE_ATTEMPTED -> {
-                dataContainer.ampNotesAttempted--
+        if (!noteActions.isEmpty()) {
+            when (noteActions.pop()) {
+                Constants.NoteActions.AMP_NOTE_ATTEMPTED -> {
+                    dataContainer.ampNotesAttempted--
+                }
+                Constants.NoteActions.AMP_NOTE_SCORED -> {
+                    dataContainer.ampNotesAttempted--
+                    dataContainer.ampNotesScored--
+                }
+                Constants.NoteActions.SPEAKER_NOTE_ATTEMPTED -> {
+                    dataContainer.speakerNotesAttempted--
+                }
+                Constants.NoteActions.SPEAKER_NOTE_SCORED -> {
+                    dataContainer.speakerNotesAttempted--
+                    dataContainer.speakerNotesScored--
+                }
+                Constants.NoteActions.SPEAKER_NOTE_ATTEMPTED_AMPLIFIED -> {
+                    dataContainer.speakerNotesAttemptedAmped--
+                }
+                Constants.NoteActions.SPEAKER_NOTE_SCORED_AMPLIFIED -> {
+                    dataContainer.speakerNotesAttemptedAmped--
+                    dataContainer.speakerNotesScoredAmped--
+                }
+                Constants.NoteActions.TRAP_NOTE_ATTEMPTED -> {
+                    dataContainer.trapNotesAttempted--
+                }
+                Constants.NoteActions.TRAP_NOTE_SCORED -> {
+                    dataContainer.trapNotesAttempted--
+                    dataContainer.trapNotesScored--
+                }
+                else -> {}
             }
-            Constants.NoteActions.AMP_NOTE_SCORED -> {
-                dataContainer.ampNotesAttempted--
-                dataContainer.ampNotesScored--
-            }
-            Constants.NoteActions.SPEAKER_NOTE_ATTEMPTED -> {
-                dataContainer.speakerNotesAttempted--
-            }
-            Constants.NoteActions.SPEAKER_NOTE_SCORED -> {
-                dataContainer.speakerNotesAttempted--
-                dataContainer.speakerNotesScored--
-            }
-            Constants.NoteActions.SPEAKER_NOTE_ATTEMPTED_AMPLIFIED -> {
-                dataContainer.speakerNotesAttemptedAmped--
-            }
-            Constants.NoteActions.SPEAKER_NOTE_SCORED_AMPLIFIED -> {
-                dataContainer.speakerNotesAttemptedAmped--
-                dataContainer.speakerNotesScoredAmped--
-            }
-            else -> {}
         }
+    }
+
+    fun getLastNoteAction(): Constants.NoteActions? {
+        return if (noteActions.isEmpty()) null
+        else noteActions.peek()
     }
 
     private fun addNoteAction(key: Constants.NoteActions) {
         noteActions.push(key)
 
-        if (noteActions.size > 30) {
+        if (noteActions.size > 200) {
             noteActions.removeAt(0)
         }
     }

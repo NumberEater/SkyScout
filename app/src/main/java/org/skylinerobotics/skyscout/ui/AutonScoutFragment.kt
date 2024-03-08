@@ -21,6 +21,7 @@ class AutonScoutFragment(private val teamNumber: Int) : GameScoutFragment(teamNu
     private lateinit var ampScoredButton: Button
     private lateinit var  ampFailedButton: Button
     private lateinit var leftWingCheckbox: CheckBox
+    private lateinit var undoButton: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,6 +45,7 @@ class AutonScoutFragment(private val teamNumber: Int) : GameScoutFragment(teamNu
         ampScoredButton = layout.findViewById(R.id.amp_shot_scored_button)
         ampFailedButton = layout.findViewById(R.id.amp_shot_failed_button)
         leftWingCheckbox = layout.findViewById(R.id.left_wing_checkbox)
+        undoButton = layout.findViewById(R.id.undo_button)
     }
 
     private fun updateButtonText() {
@@ -74,6 +76,7 @@ class AutonScoutFragment(private val teamNumber: Int) : GameScoutFragment(teamNu
         ampScoredButton.setOnClickListener { ampScoredButtonAction() }
         ampFailedButton.setOnClickListener { ampFailedButtonAction() }
         leftWingCheckbox.setOnClickListener { dataHandler.setLeftWing(leftWingCheckbox.isChecked) }
+        undoButton.setOnClickListener { undoButtonAction() }
     }
 
     private fun speakerScoredButtonAction() {
@@ -106,6 +109,11 @@ class AutonScoutFragment(private val teamNumber: Int) : GameScoutFragment(teamNu
             R.string.auton_fragment_amp_failed,
             dataHandler.getDataContainer().ampNotesAttempted - dataHandler.getDataContainer().ampNotesScored
         )
+    }
+
+    private fun undoButtonAction() {
+        dataHandler.undoLastNote()
+        updateButtonText()
     }
 
     override fun getDataContainer(): AutonDataContainer {
