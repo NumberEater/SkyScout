@@ -54,10 +54,16 @@ class InfoScoutFragment(private val teamNumber: Int) : GameScoutFragment(teamNum
         val notesEntry: EditText = layout.findViewById(R.id.notes_input)
         val robotBreakdown = layout.findViewById<CheckBox>(R.id.robot_breakdown_checkbox).isChecked
 
-        dataHandler.setScoutName(nameEntry.editableText.toString())
+        dataHandler.setScoutName(getFormattedTextFromEntry(nameEntry))
         dataHandler.setMatchNumber(matchNumberEntry.editableText.toString().toIntOrNull() ?: 0)
         dataHandler.setTeamNumber(teamNumberEntry.editableText.toString().toIntOrNull() ?: 0)
-        dataHandler.setNotes(notesEntry.editableText.toString())
+        dataHandler.setNotes(getFormattedTextFromEntry(notesEntry))
         dataHandler.setBreakdown(robotBreakdown)
+    }
+
+    private fun getFormattedTextFromEntry(entry: EditText): String {
+        return entry
+            .text.toString()
+            .replace(',', ';')
     }
 }
