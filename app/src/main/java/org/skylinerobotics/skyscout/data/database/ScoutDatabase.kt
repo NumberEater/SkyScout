@@ -13,7 +13,7 @@ class ScoutDatabase(context: Context) {
 
     companion object {
         private const val CREATE_MAIN_TABLE = """
-            CREATE TABLE IF NOT EXISTS ScoutData(
+            CREATE TABLE IF NOT EXISTS MatchData(
                 ScoutName VARCHAR,
                 MatchNumber INTEGER,
                 TeamNumber INTEGER,
@@ -38,7 +38,7 @@ class ScoutDatabase(context: Context) {
                 Notes VARCHAR)"""
 
         private const val ADD_MATCH_ENTRY_FORMAT = """
-            INSERT INTO ScoutData VALUES(
+            INSERT INTO MatchData VALUES(
                 "%s",
                 %d,
                 %d,
