@@ -1,11 +1,13 @@
 package org.skylinerobotics.skyscout.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.RadioGroup
+import android.widget.Toast
 import org.skylinerobotics.skyscout.R
 import org.skylinerobotics.skyscout.data.database.ScoutDatabase
 import org.skylinerobotics.skyscout.data.datacontainer.PitDataContainer
@@ -112,5 +114,8 @@ class PitScoutActivity : AppCompatActivity() {
         val database = ScoutDatabase(this)
         database.addPitEntry(constructDataContainer())
         database.close()
+
+        Toast.makeText(this, "Scout Stored", Toast.LENGTH_SHORT).show()
+        startActivity(Intent(this, MainActivity::class.java))
     }
 }
