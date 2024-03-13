@@ -206,12 +206,12 @@
                 android:text="@string/pit_scout_fixed"/>
 
             <RadioButton
-                android:id="@+id/shooter_turret_button"
+                android:id="@+id/shooter_pivot_button"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:scaleX="1.5"
                 android:scaleY="1.5"
-                android:text="@string/pit_scout_turret"/>
+                android:text="@string/pit_scout_pivot"/>
 
             <RadioButton
                 android:id="@+id/shooter_none_button"

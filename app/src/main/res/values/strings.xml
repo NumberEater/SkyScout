@@ -63,7 +63,7 @@
     <string name="pit_scout_shooter">Shooter</string>
     <string name="pit_scout_drivetrain">Drivetrain</string>
     <string name="pit_scout_fixed">Fixed</string>
-    <string name="pit_scout_turret">Turret</string>
+    <string name="pit_scout_pivot">Pivoting</string>
     <string name="pit_scout_none">None</string>
     <string name="pit_scout_tank">Tank</string>
     <string name="pit_scout_swerve">Swerve</string>

@@ -78,7 +78,7 @@ class PitScoutActivity : AppCompatActivity() {
 
         val shooterType = when (shooterRadioGroup.checkedRadioButtonId) {
             R.id.shooter_none_button -> "NONE"
-            R.id.shooter_turret_button -> "TURRET"
+            R.id.shooter_pivot_button -> "PIVOTING"
             else -> "FIXED"
         }
 
