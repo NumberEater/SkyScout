@@ -12,7 +12,6 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.graphics.drawable.toBitmap
@@ -40,15 +39,11 @@ class SpeakerShotMapFragment(
 
     private var isFieldBitmapInitialized = false
 
-    private lateinit var ampedCheckbox: CheckBox
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val layout = inflater.inflate(R.layout.fragment_speaker_shot_map, container, false)
-
-        ampedCheckbox = layout.findViewById(R.id.amplified_checkbox)
 
         setButtonActions(layout)
 
@@ -73,9 +68,9 @@ class SpeakerShotMapFragment(
     private fun submitButtonAction() {
         shotDataHandler.addShot(currentShotX, currentShotY, scored)
         if (scored)
-            teleopDataHandler.incrementSpeakerNoteScored(ampedCheckbox.isChecked)
+            teleopDataHandler.incrementSpeakerNoteScored()
         else
-            teleopDataHandler.incrementSpeakerNoteFailed(ampedCheckbox.isChecked)
+            teleopDataHandler.incrementSpeakerNoteFailed()
 
         Toast.makeText(context, (if (scored) "Scored" else "Missed") + " Shot Recorded", Toast.LENGTH_SHORT).show()
         loadCallingFragment()
@@ -121,7 +116,7 @@ class SpeakerShotMapFragment(
                 }
 
                 currentShotY = 1.0f - (y / fieldMapHeight)
-                Log.i("SpeakerShotMapFragment", String.format("Shot at (%.2f, %.2f)", x / fieldMapWidth, y / fieldMapHeight))
+                Log.i("SpeakerShotMapFragment", String.format("Shot at (%.2f, %.2f)", currentShotX, currentShotY))
 
                 return true
             }

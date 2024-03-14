@@ -38,28 +38,15 @@ class TeleopDataHandler : DataHandler() {
         addNoteAction(Constants.NoteActions.AMP_NOTE_ATTEMPTED)
     }
 
-    fun incrementSpeakerNoteScored(amped: Boolean) {
-        if (amped) {
-            dataContainer.speakerNotesAttemptedAmped++
-            dataContainer.speakerNotesScoredAmped++
-
-            addNoteAction(Constants.NoteActions.SPEAKER_NOTE_SCORED_AMPLIFIED)
-        } else {
-            dataContainer.speakerNotesAttempted++
-            dataContainer.speakerNotesScored++
-
-            addNoteAction(Constants.NoteActions.SPEAKER_NOTE_SCORED)
-        }
+    fun incrementSpeakerNoteScored() {
+        dataContainer.speakerNotesAttempted++
+        dataContainer.speakerNotesScored++
+        addNoteAction(Constants.NoteActions.SPEAKER_NOTE_SCORED)
     }
 
-    fun incrementSpeakerNoteFailed(amped: Boolean) {
-        if (amped) {
-            dataContainer.speakerNotesAttemptedAmped++
-            addNoteAction(Constants.NoteActions.SPEAKER_NOTE_ATTEMPTED_AMPLIFIED)
-        } else {
-            dataContainer.speakerNotesAttempted++
-            addNoteAction(Constants.NoteActions.SPEAKER_NOTE_ATTEMPTED)
-        }
+    fun incrementSpeakerNoteFailed() {
+        dataContainer.speakerNotesAttempted++
+        addNoteAction(Constants.NoteActions.SPEAKER_NOTE_ATTEMPTED)
     }
 
     fun incrementTrapNoteScored() {
@@ -89,13 +76,6 @@ class TeleopDataHandler : DataHandler() {
                 Constants.NoteActions.SPEAKER_NOTE_SCORED -> {
                     dataContainer.speakerNotesAttempted--
                     dataContainer.speakerNotesScored--
-                }
-                Constants.NoteActions.SPEAKER_NOTE_ATTEMPTED_AMPLIFIED -> {
-                    dataContainer.speakerNotesAttemptedAmped--
-                }
-                Constants.NoteActions.SPEAKER_NOTE_SCORED_AMPLIFIED -> {
-                    dataContainer.speakerNotesAttemptedAmped--
-                    dataContainer.speakerNotesScoredAmped--
                 }
                 Constants.NoteActions.TRAP_NOTE_ATTEMPTED -> {
                     dataContainer.trapNotesAttempted--

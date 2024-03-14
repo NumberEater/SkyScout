@@ -74,12 +74,11 @@ class TeleopScoutFragment(private val teamNumber: Int) : GameScoutFragment(teamN
     private fun updateButtonText() {
         speakerScoredButton.text = getString(
             R.string.teleop_fragment_speaker_shot_scored,
-            dataHandler.getDataContainer().speakerNotesScored + dataHandler.getDataContainer().speakerNotesScoredAmped
+            dataHandler.getDataContainer().speakerNotesScored
         )
         speakerFailedButton.text = getString(
             R.string.teleop_fragment_speaker_shot_failed,
-            (dataHandler.getDataContainer().speakerNotesAttempted - dataHandler.getDataContainer().speakerNotesScored) +
-                    (dataHandler.getDataContainer().speakerNotesAttemptedAmped - dataHandler.getDataContainer().speakerNotesScoredAmped)
+            (dataHandler.getDataContainer().speakerNotesAttempted - dataHandler.getDataContainer().speakerNotesScored)
         )
 
         ampShotScoredButton.text = getString(
