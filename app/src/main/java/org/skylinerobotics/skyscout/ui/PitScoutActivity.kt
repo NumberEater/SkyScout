@@ -14,9 +14,6 @@ import org.skylinerobotics.skyscout.data.datacontainer.PitDataContainer
 
 class PitScoutActivity : AppCompatActivity() {
     private lateinit var teamNumberInput: EditText
-    private lateinit var lengthInput: EditText
-    private lateinit var widthInput: EditText
-    private lateinit var heightInput: EditText
 
     private lateinit var ampScoreCheckbox: CheckBox
     private lateinit var speakerScoreCheckbox: CheckBox
@@ -29,10 +26,12 @@ class PitScoutActivity : AppCompatActivity() {
     private lateinit var drivetrainRadioGroup: RadioGroup
 
     private lateinit var climbCheckbox: CheckBox
-    private lateinit var offenseCheckbox: CheckBox
-    private lateinit var defenseCheckbox: CheckBox
 
     private lateinit var submitButton: Button
+
+    private lateinit var underStageCheckbox: CheckBox
+    private lateinit var harmonyCheckbox: CheckBox
+    private lateinit var notesInput: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,9 +42,8 @@ class PitScoutActivity : AppCompatActivity() {
 
     private fun initLayoutElements() {
         teamNumberInput = findViewById(R.id.team_number_input)
-        lengthInput = findViewById(R.id.length_input)
-        widthInput = findViewById(R.id.width_input)
-        heightInput = findViewById(R.id.height_input)
+
+        underStageCheckbox = findViewById(R.id.drive_under_stage_checkbox)
 
         ampScoreCheckbox = findViewById(R.id.amp_checkbox)
         speakerScoreCheckbox = findViewById(R.id.speaker_checkbox)
@@ -58,8 +56,9 @@ class PitScoutActivity : AppCompatActivity() {
         drivetrainRadioGroup = findViewById(R.id.drivetrain_type_radio_group)
 
         climbCheckbox = findViewById(R.id.climb_checkbox)
-        offenseCheckbox = findViewById(R.id.offense_checkbox)
-        defenseCheckbox = findViewById(R.id.defense_checkbox)
+        harmonyCheckbox = findViewById(R.id.harmonize_checkbox)
+
+        notesInput = findViewById(R.id.notes_input)
 
         submitButton = findViewById(R.id.submit_button)
         submitButton.setOnClickListener { submitButtonAction() }
@@ -67,9 +66,7 @@ class PitScoutActivity : AppCompatActivity() {
 
     private fun constructDataContainer(): PitDataContainer {
         val teamNumber = teamNumberInput.text.toString().toIntOrNull() ?: 0
-        val length = lengthInput.text.toString().toIntOrNull() ?: 0
-        val width = widthInput.text.toString().toIntOrNull() ?: 0
-        val height = heightInput.text.toString().toIntOrNull() ?: 0
+        val canDriveUnderStage = underStageCheckbox.isChecked
         val canDoAmp = ampScoreCheckbox.isChecked
         val canDoSpeaker = speakerScoreCheckbox.isChecked
         val canDoTrap = trapScoreCheckbox.isChecked
@@ -89,14 +86,11 @@ class PitScoutActivity : AppCompatActivity() {
         }
 
         val canClimb = climbCheckbox.isChecked
-        val canOffense = offenseCheckbox.isChecked
-        val canDefense = defenseCheckbox.isChecked
+        val canHarmonize = harmonyCheckbox.isChecked
 
         return PitDataContainer(
             teamNumber,
-            length,
-            width,
-            height,
+            canDriveUnderStage,
             canDoAmp,
             canDoSpeaker,
             canDoTrap,
@@ -105,9 +99,16 @@ class PitScoutActivity : AppCompatActivity() {
             shooterType,
             drivetrainType,
             canClimb,
-            canOffense,
-            canDefense
+            canHarmonize,
+            getFormattedTextFromEntry(notesInput)
         )
+    }
+
+    private fun getFormattedTextFromEntry(entry: EditText): String {
+        return entry
+            .text
+            .toString()
+            .replace(',', ';')
     }
 
     private fun submitButtonAction() {

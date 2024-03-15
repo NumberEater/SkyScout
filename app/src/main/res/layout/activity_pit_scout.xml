@@ -41,51 +41,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <EditText
-        android:id="@+id/length_input"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="75dp"
-        android:layout_marginVertical="50dp"
-        android:imeOptions="actionDone"
-        android:hint="@string/pit_scout_length"
-        android:inputType="number"
-        android:textAlignment="center"
-        android:textSize="20sp"
-
-        app:layout_constraintTop_toBottomOf="@id/team_number_input"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/width_input"/>
-    <EditText
-        android:id="@+id/width_input"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginVertical="50dp"
-        android:imeOptions="actionDone"
-        android:hint="@string/pit_scout_width"
-        android:inputType="number"
-        android:textAlignment="center"
-        android:textSize="20sp"
-
-        app:layout_constraintTop_toBottomOf="@id/team_number_input"
-        app:layout_constraintStart_toEndOf="@id/length_input"
-        app:layout_constraintEnd_toStartOf="@id/height_input"/>
-    <EditText
-        android:id="@+id/height_input"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="75dp"
-        android:layout_marginVertical="50dp"
-        android:imeOptions="actionDone"
-        android:hint="@string/pit_scout_height"
-        android:inputType="number"
-        android:textAlignment="center"
-        android:textSize="20sp"
-
-        app:layout_constraintTop_toBottomOf="@id/team_number_input"
-        app:layout_constraintStart_toEndOf="@id/width_input"
-        app:layout_constraintEnd_toEndOf="parent"/>
 
     <LinearLayout
         android:id="@+id/score_type_layout"
@@ -95,7 +50,7 @@
         android:layout_margin="50dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/intake_ability_layout"
-        app:layout_constraintTop_toBottomOf="@id/length_input"
+        app:layout_constraintTop_toBottomOf="@id/team_number_input"
         android:gravity="center">
 
         <TextView
@@ -141,7 +96,7 @@
         android:layout_margin="50dp"
         app:layout_constraintStart_toEndOf="@id/score_type_layout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/length_input"
+        app:layout_constraintTop_toBottomOf="@id/team_number_input"
         android:gravity="center">
 
         <TextView
@@ -281,45 +236,48 @@
 
     </LinearLayout>
 
-    <CheckBox
-        android:id="@+id/climb_checkbox"
-        android:layout_width="100dp"
+    <LinearLayout android:id="@+id/stage_ability_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scaleX="1.5"
-        android:scaleY="1.5"
-        android:text="@string/pit_scout_climb"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginHorizontal="50dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="vertical"
+        android:layout_margin="50dp"
+        android:gravity="center"
         app:layout_constraintTop_toBottomOf="@id/shooter_type_layout"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <CheckBox
-        android:id="@+id/offense_checkbox"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:scaleX="1.5"
-        android:scaleY="1.5"
-        android:text="@string/pit_Scout_offense"
-        android:layout_marginVertical="20dp"
-        android:layout_marginHorizontal="50dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/climb_checkbox"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/notes_input">
 
-    <CheckBox
-        android:id="@+id/defense_checkbox"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:scaleX="1.5"
-        android:scaleY="1.5"
-        android:text="@string/pit_scout_defense"
-        android:layout_marginVertical="20dp"
-        android:layout_marginHorizontal="50dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/offense_checkbox"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        <CheckBox
+            android:id="@+id/drive_under_stage_checkbox"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            android:layout_marginVertical="10dp"
+            android:text="@string/pit_scout_under_stage"
+            android:layout_marginHorizontal="50dp"/>
+
+        <CheckBox
+            android:id="@+id/climb_checkbox"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            android:layout_marginVertical="10dp"
+            android:text="@string/pit_scout_climb"
+            android:layout_marginHorizontal="50dp"/>
+
+        <CheckBox
+            android:id="@+id/harmonize_checkbox"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            android:layout_marginVertical="10dp"
+            android:text="@string/pit_scout_harmonize"
+            android:layout_marginHorizontal="50dp"/>
+
+    </LinearLayout>
 
     <EditText
         android:id="@+id/notes_input"
@@ -333,7 +291,7 @@
         android:textAlignment="center"
         android:textSize="20sp"
 
-        app:layout_constraintTop_toBottomOf="@id/defense_checkbox"
+        app:layout_constraintTop_toBottomOf="@id/stage_ability_layout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 

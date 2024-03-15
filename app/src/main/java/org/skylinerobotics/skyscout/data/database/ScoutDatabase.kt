@@ -56,8 +56,6 @@ class ScoutDatabase(context: Context) {
                 %d,
                 %d,
                 %d,
-                %d,
-                %d,
                 "%s")
         """
 
@@ -82,9 +80,7 @@ class ScoutDatabase(context: Context) {
         private const val CREATE_PIT_TABLE = """
             CREATE TABLE IF NOT EXISTS PitData(
                 TeamNumber INTEGER,
-                Length INTEGER,
-                Width INTEGER,
-                Height INTEGER,
+                CanDriveUnderStage BOOLEAN,
                 Amp BOOLEAN,
                 Speaker BOOLEAN,
                 Trap BOOLEAN,
@@ -93,8 +89,8 @@ class ScoutDatabase(context: Context) {
                 ShooterType VARCHAR,
                 DrivetrainType VARCHAR,
                 Climb BOOLEAN,
-                Offense BOOLEAN,
-                Defense BOOLEAN
+                CanHarmonize BOOLEAN,
+                Notes VARCHAR
             )
         """
 
@@ -107,13 +103,11 @@ class ScoutDatabase(context: Context) {
                 %d,
                 %d,
                 %d,
-                %d,
-                %d,
                 "%s",
                 "%s",
                 %d,
                 %d,
-                %d
+                "%s"
             )
         """
     }
@@ -174,9 +168,7 @@ class ScoutDatabase(context: Context) {
     private fun generateInsertPitCommand(pitData: PitDataContainer): String {
         return String.format(ADD_PIT_ENTRY_FORMAT,
             pitData.teamNumber,
-            pitData.length,
-            pitData.width,
-            pitData.height,
+            if (pitData.canDriveUnderStage) 1 else 0,
             if (pitData.canDoAmp) 1 else 0,
             if (pitData.canDoSpeaker) 1 else 0,
             if (pitData.canDoTrap) 1 else 0,
@@ -185,8 +177,8 @@ class ScoutDatabase(context: Context) {
             pitData.shooterType,
             pitData.drivetrainType,
             if (pitData.canClimb) 1 else 0,
-            if (pitData.canOffense) 1 else 0,
-            if (pitData.canDefense) 1 else 0
+            if (pitData.canHarmonize) 1 else 0,
+            pitData.notes
         )
     }
 

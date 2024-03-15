@@ -69,7 +69,7 @@
     <string name="pit_scout_swerve">Swerve</string>
     <string name="pit_scout_mecanum">Mecanum</string>
     <string name="pit_scout_climb">Climb</string>
-    <string name="pit_scout_defense">Defense</string>
-    <string name="pit_Scout_offense">Offense</string>
+    <string name="pit_scout_under_stage">Under Stage</string>
+    <string name="pit_scout_harmonize">Harmony</string>
     <string name="pit_scout_notes">Notes</string>
 </resources>
