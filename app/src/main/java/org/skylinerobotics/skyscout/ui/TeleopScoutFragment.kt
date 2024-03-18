@@ -15,7 +15,9 @@ import org.skylinerobotics.skyscout.data.datahandler.SpeakerShotDataHandler
 import org.skylinerobotics.skyscout.data.datahandler.TeleopDataHandler
 import org.skylinerobotics.skyscout.settings.SettingsDatabase
 
-class TeleopScoutFragment(private val teamNumber: Int) : GameScoutFragment(teamNumber) {
+class TeleopScoutFragment(private val teamNumber: Int,
+                          private val scoutingPosition: String
+) : GameScoutFragment(teamNumber) {
     private val dataHandler = TeleopDataHandler()
     private val shotsDataHandler = SpeakerShotDataHandler()
     private lateinit var layout: View
@@ -40,7 +42,7 @@ class TeleopScoutFragment(private val teamNumber: Int) : GameScoutFragment(teamN
         // Inflate the layout for this fragment
         layout = inflater.inflate(R.layout.fragment_teleop_scout, container, false)
 
-        layout.findViewById<TextView>(R.id.team_number_label).text = teamNumber.toString()
+        updateTeamNumberLabel()
 
         initializeButtons()
         setButtonActions()
@@ -55,6 +57,15 @@ class TeleopScoutFragment(private val teamNumber: Int) : GameScoutFragment(teamN
 
     fun getShotDataHandler(): SpeakerShotDataHandler {
         return shotsDataHandler
+    }
+
+    private fun updateTeamNumberLabel() {
+        val teamNumberLabel: TextView = layout.findViewById(R.id.team_number_label)
+        if (teamNumber == 0) {
+            teamNumberLabel.text = scoutingPosition
+        } else {
+            teamNumberLabel.text = teamNumber.toString()
+        }
     }
 
     private fun initializeButtons() {
@@ -119,16 +130,11 @@ class TeleopScoutFragment(private val teamNumber: Int) : GameScoutFragment(teamN
     }
 
     private fun speakerScoredButtonAction() {
-        loadParentFragment(SpeakerShotMapFragment(this, shotsDataHandler, dataHandler, true, loadScoutingPosition()))
+        loadParentFragment(SpeakerShotMapFragment(this, shotsDataHandler, dataHandler, true, scoutingPosition))
     }
 
     private fun speakerFailedButtonAction() {
-        loadParentFragment(SpeakerShotMapFragment(this, shotsDataHandler, dataHandler, true, loadScoutingPosition()))
-    }
-
-    private fun loadScoutingPosition(): String? {
-        val settings = SettingsDatabase(requireContext())
-        return settings.loadSetting("scouting-position")
+        loadParentFragment(SpeakerShotMapFragment(this, shotsDataHandler, dataHandler, true, scoutingPosition))
     }
 
     private fun ampShotScoredButtonAction() {

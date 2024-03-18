@@ -11,7 +11,9 @@ import org.skylinerobotics.skyscout.R
 import org.skylinerobotics.skyscout.data.datacontainer.AutonDataContainer
 import org.skylinerobotics.skyscout.data.datahandler.AutonDataHandler
 
-class AutonScoutFragment(private val teamNumber: Int) : GameScoutFragment(teamNumber) {
+class AutonScoutFragment(private val teamNumber: Int,
+                         private val scoutingPosition: String
+) : GameScoutFragment(teamNumber) {
     private val dataHandler = AutonDataHandler()
 
     private lateinit var layout: View
@@ -30,13 +32,21 @@ class AutonScoutFragment(private val teamNumber: Int) : GameScoutFragment(teamNu
         // Inflate the layout for this fragment
         layout = inflater.inflate(R.layout.fragment_auton_scout, container, false)
 
-        layout.findViewById<TextView>(R.id.team_number_label).text = teamNumber.toString()
-
+        updateTeamNumberLabel()
         initializeButtons()
         setButtonActions()
         updateButtonText()
 
         return layout
+    }
+
+    private fun updateTeamNumberLabel() {
+        val teamNumberLabel: TextView = layout.findViewById(R.id.team_number_label)
+        if (teamNumber == 0) {
+            teamNumberLabel.text = scoutingPosition
+        } else {
+            teamNumberLabel.text = teamNumber.toString()
+        }
     }
 
     private fun initializeButtons() {

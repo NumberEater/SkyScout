@@ -11,6 +11,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.skylinerobotics.skyscout.R
 import org.skylinerobotics.skyscout.data.database.ScoutDatabase
 import org.skylinerobotics.skyscout.data.datacontainer.MatchDataContainer
+import org.skylinerobotics.skyscout.settings.SettingsDatabase
 
 class GameScoutActivity : AppCompatActivity() {
 
@@ -21,10 +22,14 @@ class GameScoutActivity : AppCompatActivity() {
     private lateinit var infoFragment: InfoScoutFragment
 
     private var teamNumber: Int = 0
+    private lateinit var scoutingPosition: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_scout)
+
+        Thread { scoutingPosition = SettingsDatabase(this).loadSetting("scouting-position") ?: "" }
+            .start()
 
         initBackPressedCallback()
         initBottomNav()
@@ -80,8 +85,8 @@ class GameScoutActivity : AppCompatActivity() {
     }
 
     private fun initScoutFragments() {
-        autonFragment = AutonScoutFragment(teamNumber)
-        teleopFragment = TeleopScoutFragment(teamNumber)
+        autonFragment = AutonScoutFragment(teamNumber, scoutingPosition)
+        teleopFragment = TeleopScoutFragment(teamNumber, scoutingPosition)
         infoFragment = InfoScoutFragment(teamNumber)
     }
 
