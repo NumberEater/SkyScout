@@ -24,7 +24,8 @@ class SpeakerShotMapFragment(
     private val callingFragment: GameScoutFragment,
     private val shotDataHandler: SpeakerShotDataHandler,
     private val teleopDataHandler: TeleopDataHandler,
-    private val scored: Boolean) : Fragment() {
+    private val scored: Boolean,
+    private val position: String?) : Fragment() {
 
     private lateinit var fieldMapImageView: ImageView
     private lateinit var fieldMapBitmap: Bitmap
@@ -48,13 +49,10 @@ class SpeakerShotMapFragment(
         setButtonActions(layout)
 
         fieldMapImageView = layout.findViewById(R.id.field_map)
-        val settings = SettingsDatabase(requireContext())
-        val position = settings.loadSetting("scouting-position")
         if (position?.startsWith("RED") == true) {
             fieldMapImageView.setImageResource(R.drawable.field_orientation_2)
             fieldOrientation = 1
         }
-
         fieldMapImageView.setOnTouchListener(::mapTouchAction)
 
         return layout

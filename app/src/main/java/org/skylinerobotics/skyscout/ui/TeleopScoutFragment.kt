@@ -13,6 +13,7 @@ import org.skylinerobotics.skyscout.R
 import org.skylinerobotics.skyscout.data.datacontainer.TeleopDataContainer
 import org.skylinerobotics.skyscout.data.datahandler.SpeakerShotDataHandler
 import org.skylinerobotics.skyscout.data.datahandler.TeleopDataHandler
+import org.skylinerobotics.skyscout.settings.SettingsDatabase
 
 class TeleopScoutFragment(private val teamNumber: Int) : GameScoutFragment(teamNumber) {
     private val dataHandler = TeleopDataHandler()
@@ -118,11 +119,16 @@ class TeleopScoutFragment(private val teamNumber: Int) : GameScoutFragment(teamN
     }
 
     private fun speakerScoredButtonAction() {
-        loadParentFragment(SpeakerShotMapFragment(this, shotsDataHandler, dataHandler, true))
+        loadParentFragment(SpeakerShotMapFragment(this, shotsDataHandler, dataHandler, true, loadScoutingPosition()))
     }
 
     private fun speakerFailedButtonAction() {
-        loadParentFragment(SpeakerShotMapFragment(this, shotsDataHandler, dataHandler, false))
+        loadParentFragment(SpeakerShotMapFragment(this, shotsDataHandler, dataHandler, true, loadScoutingPosition()))
+    }
+
+    private fun loadScoutingPosition(): String? {
+        val settings = SettingsDatabase(requireContext())
+        return settings.loadSetting("scouting-position")
     }
 
     private fun ampShotScoredButtonAction() {
