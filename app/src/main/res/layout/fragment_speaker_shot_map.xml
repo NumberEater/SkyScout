@@ -10,7 +10,6 @@
         android:id="@+id/field_map"
         android:layout_width="500dp"
         android:layout_height="500dp"
-        android:src="@drawable/field_orientation_1"
         android:background="@drawable/map_background"
         android:layout_margin="25dp"
         android:padding="5dp"

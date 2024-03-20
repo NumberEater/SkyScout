@@ -8,12 +8,13 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 import org.skylinerobotics.skyscout.Constants
 import org.skylinerobotics.skyscout.R
 import org.skylinerobotics.skyscout.data.datacontainer.TeleopDataContainer
 import org.skylinerobotics.skyscout.data.datahandler.SpeakerShotDataHandler
 import org.skylinerobotics.skyscout.data.datahandler.TeleopDataHandler
-import org.skylinerobotics.skyscout.settings.SettingsDatabase
 
 class TeleopScoutFragment(private val teamNumber: Int,
                           private val scoutingPosition: String
@@ -42,13 +43,19 @@ class TeleopScoutFragment(private val teamNumber: Int,
         // Inflate the layout for this fragment
         layout = inflater.inflate(R.layout.fragment_teleop_scout, container, false)
 
-        updateTeamNumberLabel()
-
         initializeButtons()
         setButtonActions()
-        updateButtonText()
 
         return layout
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            updateTeamNumberLabel()
+            updateButtonText()
+        }
     }
 
     override fun getDataContainer(): TeleopDataContainer {
@@ -130,11 +137,11 @@ class TeleopScoutFragment(private val teamNumber: Int,
     }
 
     private fun speakerScoredButtonAction() {
-        loadParentFragment(SpeakerShotMapFragment(this, shotsDataHandler, dataHandler, true, scoutingPosition))
+        loadFragment(SpeakerShotMapFragment(this, shotsDataHandler, dataHandler, true, scoutingPosition))
     }
 
     private fun speakerFailedButtonAction() {
-        loadParentFragment(SpeakerShotMapFragment(this, shotsDataHandler, dataHandler, true, scoutingPosition))
+        loadFragment(SpeakerShotMapFragment(this, shotsDataHandler, dataHandler, false, scoutingPosition))
     }
 
     private fun ampShotScoredButtonAction() {
@@ -172,16 +179,14 @@ class TeleopScoutFragment(private val teamNumber: Int,
     private fun undoButtonAction() {
         val lastNoteAction = dataHandler.getLastNoteAction()
         if (lastNoteAction == Constants.NoteActions.SPEAKER_NOTE_ATTEMPTED
-            || lastNoteAction == Constants.NoteActions.SPEAKER_NOTE_SCORED
-            || lastNoteAction == Constants.NoteActions.SPEAKER_NOTE_ATTEMPTED_AMPLIFIED
-            || lastNoteAction == Constants.NoteActions.SPEAKER_NOTE_SCORED_AMPLIFIED) {
+            || lastNoteAction == Constants.NoteActions.SPEAKER_NOTE_SCORED) {
             shotsDataHandler.undoLastShot()
         }
         dataHandler.undoLastNote()
         updateButtonText()
     }
 
-    private fun loadParentFragment(fragment: Fragment){
+    private fun loadFragment(fragment: Fragment){
         val transaction = parentFragmentManager.beginTransaction()
         transaction.replace(R.id.fragment_container,fragment)
         transaction.commit()

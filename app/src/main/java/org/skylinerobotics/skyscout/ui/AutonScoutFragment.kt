@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.TextView
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 import org.skylinerobotics.skyscout.R
 import org.skylinerobotics.skyscout.data.datacontainer.AutonDataContainer
 import org.skylinerobotics.skyscout.data.datahandler.AutonDataHandler
@@ -32,12 +34,19 @@ class AutonScoutFragment(private val teamNumber: Int,
         // Inflate the layout for this fragment
         layout = inflater.inflate(R.layout.fragment_auton_scout, container, false)
 
-        updateTeamNumberLabel()
         initializeButtons()
         setButtonActions()
-        updateButtonText()
 
         return layout
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            updateTeamNumberLabel()
+            updateButtonText()
+        }
     }
 
     private fun updateTeamNumberLabel() {
