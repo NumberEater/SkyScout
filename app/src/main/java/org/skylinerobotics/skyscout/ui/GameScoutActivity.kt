@@ -39,13 +39,9 @@ class GameScoutActivity : AppCompatActivity() {
 
     fun submitScout() {
         val matchData = constructMatchDataContainer()
-        val shotsDataHandler = teleopFragment.getShotDataHandler()
-        shotsDataHandler.setShotsMatchNumber(matchData.infoData.matchNumber)
-        shotsDataHandler.setShotsTeamNumber(matchData.infoData.teamNumber)
 
         val database = ScoutDatabase(this)
         database.addMatchEntry(matchData)
-        database.addShotEntries(shotsDataHandler.getDataContainer())
         database.close()
 
         Toast.makeText(this, "Scout Stored", Toast.LENGTH_SHORT).show()

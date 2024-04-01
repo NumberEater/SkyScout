@@ -20,7 +20,6 @@ class TeleopScoutFragment(private val teamNumber: Int,
                           private val scoutingPosition: String
 ) : GameScoutFragment(teamNumber) {
     private val dataHandler = TeleopDataHandler()
-    private val shotsDataHandler = SpeakerShotDataHandler()
     private lateinit var layout: View
 
     private lateinit var speakerScoredButton: Button
@@ -60,10 +59,6 @@ class TeleopScoutFragment(private val teamNumber: Int,
 
     override fun getDataContainer(): TeleopDataContainer {
         return dataHandler.getDataContainer()
-    }
-
-    fun getShotDataHandler(): SpeakerShotDataHandler {
-        return shotsDataHandler
     }
 
     private fun updateTeamNumberLabel() {
@@ -137,11 +132,19 @@ class TeleopScoutFragment(private val teamNumber: Int,
     }
 
     private fun speakerScoredButtonAction() {
-        loadFragment(SpeakerShotMapFragment(this, shotsDataHandler, dataHandler, true, scoutingPosition))
+        dataHandler.incrementSpeakerNoteScored()
+        speakerScoredButton.text = getString(
+            R.string.teleop_fragment_speaker_shot_scored,
+            dataHandler.getDataContainer().speakerNotesScored
+        )
     }
 
     private fun speakerFailedButtonAction() {
-        loadFragment(SpeakerShotMapFragment(this, shotsDataHandler, dataHandler, false, scoutingPosition))
+        dataHandler.incrementSpeakerNoteFailed()
+        speakerFailedButton.text = getString(
+            R.string.teleop_fragment_speaker_shot_failed,
+            dataHandler.getDataContainer().speakerNotesAttempted - dataHandler.getDataContainer().speakerNotesScored
+        )
     }
 
     private fun ampShotScoredButtonAction() {
@@ -178,10 +181,6 @@ class TeleopScoutFragment(private val teamNumber: Int,
 
     private fun undoButtonAction() {
         val lastNoteAction = dataHandler.getLastNoteAction()
-        if (lastNoteAction == Constants.NoteActions.SPEAKER_NOTE_ATTEMPTED
-            || lastNoteAction == Constants.NoteActions.SPEAKER_NOTE_SCORED) {
-            shotsDataHandler.undoLastShot()
-        }
         dataHandler.undoLastNote()
         updateButtonText()
     }
