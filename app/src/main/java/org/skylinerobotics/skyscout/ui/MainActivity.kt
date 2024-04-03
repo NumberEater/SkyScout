@@ -13,12 +13,15 @@ class MainActivity : AppCompatActivity() {
     private lateinit var settingsButton: Button
     private lateinit var startButton: Button
 
+    private val bluetoothManager = BluetoothAvailabilityManager(this)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         initLayoutElements()
         setClickListeners()
+        prepareBluetooth()
     }
 
     private fun initLayoutElements() {
@@ -29,6 +32,11 @@ class MainActivity : AppCompatActivity() {
     private fun setClickListeners() {
         settingsButton.setOnClickListener { settingsButtonAction() }
         startButton.setOnClickListener { startButtonAction() }
+    }
+
+    private fun prepareBluetooth() {
+        bluetoothManager.enableBluetoothIfDisabled()
+        bluetoothManager.requestDeniedPermissions()
     }
 
     private fun settingsButtonAction() {
@@ -43,11 +51,19 @@ class MainActivity : AppCompatActivity() {
     private fun scoutTypeSelectionCallback(scoutType: Constants.ScoutType) {
         when (scoutType) {
             Constants.ScoutType.MATCH -> {
-                startActivity(Intent(this, GameScoutActivity::class.java))
+                matchScoutButtonAction()
             }
             Constants.ScoutType.PIT -> {
                 startActivity(Intent(this, PitScoutActivity::class.java))
             }
+        }
+    }
+
+    private fun matchScoutButtonAction() {
+        if (bluetoothManager.isBluetoothReady()) {
+            startActivity(Intent(this, GameScoutActivity::class.java))
+        } else {
+            Toast.makeText(this, R.string.bluetooth_restart_app, Toast.LENGTH_LONG).show()
         }
     }
 }
