@@ -13,15 +13,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var settingsButton: Button
     private lateinit var startButton: Button
 
-    private val bluetoothManager = BluetoothAvailabilityManager(this)
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         initLayoutElements()
         setClickListeners()
-        bluetoothManager.prepareBluetooth()
     }
 
     private fun initLayoutElements() {
@@ -46,11 +43,7 @@ class MainActivity : AppCompatActivity() {
     private fun scoutTypeSelectionCallback(scoutType: Constants.ScoutType) {
         when (scoutType) {
             Constants.ScoutType.MATCH -> {
-                if (bluetoothManager.isBluetoothReady()) {
-                    startActivity(Intent(this, GameScoutActivity::class.java))
-                } else {
-                    Toast.makeText(this, "Bluetooth is not setup properly.", Toast.LENGTH_LONG).show()
-                }
+                startActivity(Intent(this, GameScoutActivity::class.java))
             }
             Constants.ScoutType.PIT -> {
                 startActivity(Intent(this, PitScoutActivity::class.java))
