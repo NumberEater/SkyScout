@@ -5,5 +5,6 @@ data class InfoDataContainer(
     var matchNumber: Int = 0,
     var teamNumber: Int = 0,
     var breakdown: Boolean = false,
+    var defenseDescription: String = "",
     var notes: String = ""
 ) : DataContainer {}

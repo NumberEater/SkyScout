@@ -60,6 +60,11 @@ class TeleopDataHandler : DataHandler() {
         addNoteAction(Constants.NoteActions.TRAP_NOTE_ATTEMPTED)
     }
 
+    fun incrementNotesShuttled() {
+        dataContainer.notesShuttled++
+        addNoteAction(Constants.NoteActions.NOTE_SHUTTLED)
+    }
+
     fun undoLastNote() {
         if (!noteActions.isEmpty()) {
             when (noteActions.pop()) {
@@ -84,14 +89,12 @@ class TeleopDataHandler : DataHandler() {
                     dataContainer.trapNotesAttempted--
                     dataContainer.trapNotesScored--
                 }
+                Constants.NoteActions.NOTE_SHUTTLED -> {
+                    dataContainer.notesShuttled--
+                }
                 else -> {}
             }
         }
-    }
-
-    fun getLastNoteAction(): Constants.NoteActions? {
-        return if (noteActions.isEmpty()) null
-        else noteActions.peek()
     }
 
     private fun addNoteAction(key: Constants.NoteActions) {

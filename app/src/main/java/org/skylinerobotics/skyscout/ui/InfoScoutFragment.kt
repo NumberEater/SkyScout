@@ -53,11 +53,13 @@ class InfoScoutFragment(private val teamNumber: Int) : GameScoutFragment(teamNum
         val teamNumberEntry: EditText = layout.findViewById(R.id.team_number_input)
         val notesEntry: EditText = layout.findViewById(R.id.notes_input)
         val robotBreakdown = layout.findViewById<CheckBox>(R.id.robot_breakdown_checkbox).isChecked
+        val defenseDescriptionEntry: EditText = layout.findViewById(R.id.defense_description_input)
 
         dataHandler.setScoutName(getFormattedTextFromEntry(nameEntry))
         dataHandler.setMatchNumber(matchNumberEntry.editableText.toString().toIntOrNull() ?: 0)
         dataHandler.setTeamNumber(teamNumberEntry.editableText.toString().toIntOrNull() ?: 0)
         dataHandler.setNotes(getFormattedTextFromEntry(notesEntry))
+        dataHandler.setDefenseDescription(getFormattedTextFromEntry(defenseDescriptionEntry))
         dataHandler.setBreakdown(robotBreakdown)
     }
 

@@ -6,6 +6,7 @@ data class TeleopDataContainer(
     var ampNotesScored: Int = 0,
     var speakerNotesAttempted: Int = 0,
     var speakerNotesScored: Int = 0,
+    var notesShuttled: Int = 0,
     var trapNotesAttempted: Int = 0,
     var trapNotesScored: Int = 0,
     var parked: Boolean = false,

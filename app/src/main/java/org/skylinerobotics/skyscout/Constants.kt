@@ -7,7 +7,8 @@ object Constants {
         SPEAKER_NOTE_ATTEMPTED,
         SPEAKER_NOTE_SCORED,
         TRAP_NOTE_ATTEMPTED,
-        TRAP_NOTE_SCORED
+        TRAP_NOTE_SCORED,
+        NOTE_SHUTTLED
     }
 
     enum class ScoutType {

@@ -74,4 +74,6 @@
     <string name="pit_scout_notes">Notes</string>
     <string name="settings_start_gatt_server">Start Server</string>
     <string name="bluetooth_restart_app">Bluetooth not setup. Restart app.</string>
+    <string name="teleop_fragment_note_shuttled">Note Shuttled - %1$d</string>
+    <string name="info_fragment_defense_description">Defense Description</string>
 </resources>

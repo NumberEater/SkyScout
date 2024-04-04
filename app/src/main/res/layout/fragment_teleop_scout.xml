@@ -40,7 +40,7 @@
         android:layout_marginStart="75dp"
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="25dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="25dp"
         android:backgroundTint="@color/button_green"
         android:textColor="@color/button_text"
         android:padding="15dp"
@@ -61,7 +61,7 @@
         android:layout_marginEnd="75dp"
         android:layout_marginStart="25dp"
         android:layout_marginBottom="25dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="25dp"
         android:backgroundTint="@color/button_orange"
         android:textColor="@color/button_text"
         android:padding="15dp"
@@ -81,7 +81,7 @@
 
         android:layout_marginStart="75dp"
         android:layout_marginEnd="25dp"
-        android:layout_marginVertical="40dp"
+        android:layout_marginVertical="30dp"
         android:backgroundTint="@color/button_green"
         android:padding="15dp"
         android:text="@string/teleop_fragment_amp_shot_scored"
@@ -102,7 +102,7 @@
 
         android:layout_marginEnd="75dp"
         android:layout_marginStart="25dp"
-        android:layout_marginVertical="40dp"
+        android:layout_marginVertical="30dp"
         android:backgroundTint="@color/button_orange"
         android:textColor="@color/button_text"
         android:padding="15dp"
@@ -123,7 +123,7 @@
 
         android:layout_marginStart="75dp"
         android:layout_marginEnd="25dp"
-        android:layout_marginVertical="40dp"
+        android:layout_marginVertical="30dp"
         android:backgroundTint="@color/button_green"
         android:padding="15dp"
         android:text="@string/teleop_fragment_trap_scored"
@@ -137,6 +137,7 @@
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintHorizontal_weight="0.5"/>
 
+
     <Button
         android:id="@+id/trap_failed_button"
         android:layout_width="0dp"
@@ -144,7 +145,7 @@
 
         android:layout_marginEnd="75dp"
         android:layout_marginStart="25dp"
-        android:layout_marginVertical="40dp"
+        android:layout_marginVertical="30dp"
         android:backgroundTint="@color/button_orange"
         android:textColor="@color/button_text"
         android:padding="15dp"
@@ -158,40 +159,57 @@
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintHorizontal_weight="0.5"/>
 
+    <Button
+        android:id="@+id/note_shuttled_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginHorizontal="75dp"
+        android:layout_marginVertical="30dp"
+        android:backgroundTint="@color/button"
+        android:padding="15dp"
+        android:text="@string/teleop_fragment_note_shuttled"
+        android:textColor="@color/button_text"
+        android:textSize="18sp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/trap_scored_button" />
+
     <CheckBox
         android:id="@+id/parked_checkbox"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="50dp"
-        android:layout_marginVertical="25dp"
+        android:layout_marginVertical="30dp"
         android:scaleX="1.5"
         android:scaleY="1.5"
         android:text="@string/teleop_fragment_parked"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/onstage_checkbox"
-        app:layout_constraintTop_toBottomOf="@id/trap_scored_button"/>
+        app:layout_constraintTop_toBottomOf="@id/note_shuttled_button"/>
 
     <CheckBox
         android:id="@+id/onstage_checkbox"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="50dp"
-        android:layout_marginVertical="25dp"
+        android:layout_marginVertical="30dp"
         android:scaleX="1.5"
         android:scaleY="1.5"
         android:text="@string/teleop_fragment_onstage"
 
         app:layout_constraintStart_toEndOf="@id/parked_checkbox"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/trap_scored_button"/>
+        app:layout_constraintTop_toBottomOf="@id/note_shuttled_button"/>
 
     <CheckBox
         android:id="@+id/spotlight_checkbox"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="50dp"
-        android:layout_marginVertical="25dp"
+        android:layout_marginVertical="30dp"
         android:scaleX="1.5"
         android:scaleY="1.5"
         android:text="@string/teleop_fragment_spotlight"
@@ -205,7 +223,7 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="50dp"
-        android:layout_marginVertical="25dp"
+        android:layout_marginVertical="30dp"
         android:scaleX="1.5"
         android:scaleY="1.5"
         android:text="@string/teleop_fragment_harmony"
@@ -221,14 +239,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginVertical="40dp"
+        android:layout_marginVertical="25dp"
         android:backgroundTint="@color/button_red"
         android:textColor="@color/button_text"
-        android:paddingHorizontal="40dp"
-        android:paddingVertical="20dp"
+        android:paddingHorizontal="35dp"
+        android:paddingVertical="18dp"
         android:text="@string/teleop_fragment_undo"
 
-        android:textSize="20sp"
+        android:textSize="18sp"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
