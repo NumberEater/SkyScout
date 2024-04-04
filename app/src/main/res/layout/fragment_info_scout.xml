@@ -66,6 +66,21 @@
         app:layout_constraintEnd_toStartOf="@id/team_number_input" />
 
     <EditText
+        android:id="@+id/defense_description_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:hint="@string/info_fragment_defense_description"
+        android:layout_margin="50dp"
+        android:padding="20dp"
+        android:imeOptions="actionDone"
+        android:maxLines="1"
+
+        app:layout_constraintTop_toBottomOf="@id/match_number_input"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <EditText
         android:id="@+id/notes_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -76,7 +91,7 @@
         android:imeOptions="actionDone"
         android:maxLines="1"
 
-        app:layout_constraintTop_toBottomOf="@id/match_number_input"
+        app:layout_constraintTop_toBottomOf="@id/defense_description_input"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 

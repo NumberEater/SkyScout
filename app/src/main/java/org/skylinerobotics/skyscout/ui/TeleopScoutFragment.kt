@@ -28,6 +28,7 @@ class TeleopScoutFragment(private val teamNumber: Int,
     private lateinit var ampShotFailedButton: Button
     private lateinit var trapScoredButton: Button
     private lateinit var trapFailedButton: Button
+    private lateinit var noteShuttledButton: Button
     private lateinit var parkedCheckbox: CheckBox
     private lateinit var onstageCheckbox: CheckBox
     private lateinit var spotlightCheckbox: CheckBox
@@ -77,6 +78,7 @@ class TeleopScoutFragment(private val teamNumber: Int,
         ampShotFailedButton = layout.findViewById(R.id.amp_shot_failed_button)
         trapScoredButton = layout.findViewById(R.id.trap_scored_button)
         trapFailedButton = layout.findViewById(R.id.trap_failed_button)
+        noteShuttledButton = layout.findViewById(R.id.note_shuttled_button)
         undoButton = layout.findViewById(R.id.undo_button)
 
         parkedCheckbox = layout.findViewById(R.id.parked_checkbox)
@@ -114,6 +116,11 @@ class TeleopScoutFragment(private val teamNumber: Int,
             R.string.teleop_fragment_trap_failed,
             dataHandler.getDataContainer().trapNotesAttempted - dataHandler.getDataContainer().trapNotesScored
         )
+
+        noteShuttledButton.text = getString(
+            R.string.teleop_fragment_note_shuttled,
+            dataHandler.getDataContainer().notesShuttled
+        )
     }
 
     private fun setButtonActions() {
@@ -123,6 +130,7 @@ class TeleopScoutFragment(private val teamNumber: Int,
         ampShotFailedButton.setOnClickListener { ampShotFailedButtonAction() }
         trapScoredButton.setOnClickListener { trapScoredButtonAction() }
         trapFailedButton.setOnClickListener { trapFailedButtonAction() }
+        noteShuttledButton.setOnClickListener { noteShuttledButtonAction() }
         undoButton.setOnClickListener { undoButtonAction() }
 
         parkedCheckbox.setOnClickListener { dataHandler.setParked(parkedCheckbox.isChecked) }
@@ -179,15 +187,16 @@ class TeleopScoutFragment(private val teamNumber: Int,
         )
     }
 
-    private fun undoButtonAction() {
-        val lastNoteAction = dataHandler.getLastNoteAction()
-        dataHandler.undoLastNote()
-        updateButtonText()
+    private fun noteShuttledButtonAction() {
+        dataHandler.incrementNotesShuttled()
+        noteShuttledButton.text = getString(
+            R.string.teleop_fragment_note_shuttled,
+            dataHandler.getDataContainer().notesShuttled
+        )
     }
 
-    private fun loadFragment(fragment: Fragment){
-        val transaction = parentFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container,fragment)
-        transaction.commit()
+    private fun undoButtonAction() {
+        dataHandler.undoLastNote()
+        updateButtonText()
     }
 }

@@ -72,5 +72,6 @@
     <string name="pit_scout_under_stage">Under Stage</string>
     <string name="pit_scout_harmonize">Harmony</string>
     <string name="pit_scout_notes">Notes</string>
-    <string name="teleop_fragment_note_shuttled">Note Shuttled</string>
+    <string name="teleop_fragment_note_shuttled">Note Shuttled - %1$d</string>
+    <string name="info_fragment_defense_description">Defense Description</string>
 </resources>

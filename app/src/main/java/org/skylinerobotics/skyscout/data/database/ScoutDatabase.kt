@@ -26,6 +26,7 @@ class ScoutDatabase(context: Context) {
                 TeleopAmpNotesScored INTEGER,
                 TeleopSpeakerNotesAttempted INTEGER,
                 TeleopSpeakerNotesScored INTEGER,
+                NotesShuttled INTEGER,
                 TrapNotesAttempted INTEGER,
                 TrapNotesScored INTEGER,
                 Park BOOLEAN,
@@ -33,6 +34,7 @@ class ScoutDatabase(context: Context) {
                 Spotlight BOOLEAN,
                 Harmony BOOLEAN,
                 Breakdown BOOLEAN,
+                DefenseDescription VARCHAR,
                 Notes VARCHAR)"""
 
         private const val ADD_MATCH_ENTRY_FORMAT = """
@@ -56,6 +58,8 @@ class ScoutDatabase(context: Context) {
                 %d,
                 %d,
                 %d,
+                %d,
+                "%s",
                 "%s")
         """
 
@@ -155,6 +159,7 @@ class ScoutDatabase(context: Context) {
             matchData.teleopData.ampNotesScored,
             matchData.teleopData.speakerNotesAttempted,
             matchData.teleopData.speakerNotesScored,
+            matchData.teleopData.notesShuttled,
             matchData.teleopData.trapNotesAttempted,
             matchData.teleopData.trapNotesScored,
             if (matchData.teleopData.parked) 1 else 0,
@@ -162,6 +167,7 @@ class ScoutDatabase(context: Context) {
             if (matchData.teleopData.spotlight) 1 else 0,
             if (matchData.teleopData.harmony) 1 else 0,
             if (matchData.infoData.breakdown) 1 else 0,
+            matchData.infoData.defenseDescription,
             matchData.infoData.notes)
     }
 

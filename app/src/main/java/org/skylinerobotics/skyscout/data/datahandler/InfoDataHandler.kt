@@ -4,7 +4,7 @@ import org.skylinerobotics.skyscout.data.datacontainer.InfoDataContainer
 
 
 class InfoDataHandler : DataHandler() {
-    val infoDataContainer = InfoDataContainer()
+    private val infoDataContainer = InfoDataContainer()
 
     fun setScoutName(name: String) {
         infoDataContainer.scoutName = name
@@ -24,6 +24,10 @@ class InfoDataHandler : DataHandler() {
 
     fun setNotes(notes: String) {
         infoDataContainer.notes = notes
+    }
+
+    fun setDefenseDescription(description: String) {
+        infoDataContainer.defenseDescription = description
     }
 
     override fun getDataContainer(): InfoDataContainer {
